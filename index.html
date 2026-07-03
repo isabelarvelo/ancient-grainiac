@@ -101,7 +101,6 @@
     color:var(--ink-soft);line-height:1.55;margin-bottom:38px;
   }
 
-  /* Index strip: wraps cleanly at any width */
   .index-strip{
     display:flex;
     flex-wrap:wrap;
@@ -125,9 +124,7 @@
   .sec-head .num{font-family:"IBM Plex Mono",monospace;color:var(--ochre);font-size:.9rem;}
   .sec-head h2{font-size:clamp(2rem,4.4vw,3rem);}
 
-  /* ── ABOUT ──
-     Desktop: photo left, text right.
-     Mobile: photo sits above text, centered, portrait crop. */
+  /* ── ABOUT ── */
   .about-layout{
     display:flex;
     gap:clamp(32px,4vw,56px);
@@ -307,11 +304,9 @@
     .bakes{gap:18px;}
     .specimen{padding:24px 20px;}
     .specimen .seed{width:28px;height:28px;}
-    /* Photo stacks above text on mobile */
     .about-layout{flex-direction:column;}
     .baker-photo{
       width:clamp(100px,40vw,160px);
-      /* Keep square, don't stretch full width */
     }
   }
   @media (max-width:600px){
@@ -353,6 +348,7 @@
     <nav>
       <a href="#about">The Baker</a>
       <a href="#flour">The Flour</a>
+      <a href="#why">The Why</a>
       <a href="#bakes">The Bakes</a>
       <a href="#grains">The Grains</a>
     </nav>
@@ -386,8 +382,8 @@
         <img src="assets/baker-grainiac.png" alt="Isa Arvelo" />
       </div>
       <div class="about-body">
-        <p>Hi, I'm Isa, and I love ancient grains. I first discovered them through their benefits for soil health and crop diversity, but once I started baking sourdough with them, I couldn't go back.</p>
-        <p>Ancient Grainiac is my way of sharing the goodness of ancient grains one loaf at a time. I bake wholesome, nourishing bread and baked goods in my Chicago kitchen using simple ingredients, guided by both tradition and science .</p>
+        <p>I'm Isa, and I love ancient grains. I first discovered them through their benefits for soil health and crop diversity, but once I started baking sourdough with them, I couldn't go back!</p>
+        <p>Ancient Grainiac is my way of sharing the goodness of these grains one loaf at a time. I make wholesome, nourishing bread and baked goods in my Chicago kitchen using simple ingredients, guided by both tradition and science .</p>
       </div>
     </div>
   </div>
@@ -399,22 +395,40 @@
     <div class="sec-head reveal"><span class="num">§ 02</span><h2>The flour</h2></div>
 
     <div class="flour-content reveal">
-      <p>Everything I bake is made with stone-milled flour, meaning the whole kernel gets ground together so the nutrient-rich bran and germ stay in the flour rather than being stripped away. Industrial roller mills separate the kernel into its parts and discard most of the bran and germ, taking the fiber, minerals, healthy fats, and B vitamins with them. What's left is often bleached, then "enriched"<a href="#fn1" class="cite">[1]</a> with a short list of synthetic nutrients to meet FDA minimums.<a href="#fn2" class="cite">[2]</a></p>
+      <p>Everything I bake is made with stone-milled flour, meaning that the whole kernel is ground together so that the nutrient-rich bran and germ stay in the flour rather than being stripped away. Industrial roller mills separate the kernel into its parts and discard most of the bran and germ, taking the fiber, minerals, healthy fats, and B vitamins with them. What's left is often bleached, and then "enriched"<a href="#fn1" class="cite">[1]</a> with a short list of synthetic nutrients to meet FDA minimums.<a href="#fn2" class="cite">[2]</a></p>
 
       <div class="flour-pull">
         Stone-milled flour doesn't need enriching. The nutrition is already there, exactly as nature intended.
       </div>
-
-      <p>Consuming ancient grains helps create demand to keep these older varieties in circulation. Global agriculture has narrowed around a handful of modern crops, mainly wheat, rice, corn, and barley, which has reduced genetic diversity and made the food system more fragile as the climate shifts.<a href="#fn3" class="cite">[3]</a> Ancient grains tend to need less water and fewer inputs than modern varieties, and they hold up better in drought, heat, and poor soil.<a href="#fn3" class="cite">[3]</a></p>
-
-      <p>For a long time I went along with the general consensus: whole wheat is healthier but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how much the grain shapes not just how bread tastes, but how it makes you feel.</p>
     </div>
 
     <div class="footnotes reveal">
       <ol>
         <li id="fn1"><a href="https://www.sciencedirect.com/topics/food-science/food-enrichment" target="_blank" rel="noopener">"Food Enrichment," ScienceDirect Topics</a></li>
         <li id="fn2"><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-137/subpart-B/section-137.165" target="_blank" rel="noopener">FDA, 21 CFR § 137.165 — Enriched Flour</a></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THE WHY ══ -->
+<section class="section" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">§ 03</span><h2>The why</h2></div>
+
+    <div class="flour-content reveal">
+      <p>Consuming ancient grains helps also create demand to keep these older varieties in circulation. Global agriculture has narrowed around a handful of modern crops, mainly wheat, rice, corn, and barley, which has reduced genetic diversity and made the food system more fragile as the climate shifts.<a href="#fn3" class="cite">[3]</a> Ancient grains tend to need less water and fewer inputs than modern varieties, and they hold up better in drought, heat, and poor soil.<a href="#fn3" class="cite">[3]</a></p>
+
+      <p>For a long time I went along with the general consensus that whole wheat is healthier, but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how much the grain shapes not just how bread tastes, but how it makes you feel.</p>
+
+      <p>Many people also find ancient grains easier to digest than modern wheat. The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<a href="#fn4" class="cite">[4]</a> Studies of einkorn have also found lower levels of the peptides most often associated with wheat sensitivity.<a href="#fn5" class="cite">[5]</a> Long sourdough fermentation allows wild yeast and bacteria to pre-digest some of the gluten and break down phytic acid that can otherwise block mineral absorption.</p>
+    </div>
+
+    <div class="footnotes reveal">
+      <ol start="3">
         <li id="fn3"><a href="https://www.mdpi.com/2304-8158/12/11/2213" target="_blank" rel="noopener">Majzoobi et al., "The Role of Ancient Grains in Alleviating Hunger and Malnutrition," <em>Foods</em> (2023)</a></li>
+        <li id="fn4">Shewry, P.R., "Wheat," <em>Journal of Experimental Botany</em> (2009) — gluten protein structure in ancient vs. modern wheats.</li>
+        <li id="fn5"><a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2020.00056/full" target="_blank" rel="noopener">Vaquero et al., "Comparative Analysis of in vitro Digestibility and Immunogenicity of Gliadin Proteins from Durum and Einkorn Wheat," <em>Frontiers in Nutrition</em> (2020)</a></li>
       </ol>
     </div>
   </div>
@@ -423,7 +437,7 @@
 <!-- ══ THE BAKES ══ -->
 <section class="section" id="bakes">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="num">§ 03</span><h2>The bakes</h2></div>
+    <div class="sec-head reveal"><span class="num">§ 04</span><h2>The bakes</h2></div>
     <div class="bakes reveal">
       <article class="bake">
         <div class="img"><img src="assets/rye-choc-chip-cookies.jpeg" alt="Rye brown butter chocolate chunk cookies, sea-salted, cooling on a wire rack" /></div>
@@ -495,11 +509,10 @@
 <!-- ══ GRAIN ARCHIVE ══ -->
 <section class="section" id="grains">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="num">§ 04</span><h2>The grain archive</h2></div>
+    <div class="sec-head reveal"><span class="num">§ 05</span><h2>The grain archive</h2></div>
 
     <div class="archive-intro reveal">
-      <p>"Ancient grains" are the wheats and cereals that have stayed largely unchanged over the last several hundred years, not bred for industrial yield.</p>
-      <p>Many people also find them easier to digest than modern wheat. The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<a href="#fn4" class="cite">[4]</a> Studies of einkorn have also found lower levels of the peptides most often implicated in wheat sensitivity.<a href="#fn5" class="cite">[5]</a> Long sourdough fermentation allows wild yeast and bacteria to pre-digest some of the gluten and break down phytic acid that can otherwise block mineral absorption.</p>
+      <p>"Ancient grains" are wheats and cereals that have stayed largely unchanged over the last several hundred years, not bred for industrial yield.</p>
     </div>
 
     <div class="specimens reveal">
@@ -538,13 +551,6 @@
         <p>Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. It is gluten-free and notably high in iron, magnesium, phosphorus, and zinc, with a lower glycemic index than most cereals.</p>
         <span class="meta">Domesticated c. 2500 BCE · Sahel, West Africa</span>
       </article>
-    </div>
-
-    <div class="footnotes reveal" style="margin-top:48px;">
-      <ol start="4">
-        <li id="fn4">Shewry, P.R., "Wheat," <em>Journal of Experimental Botany</em> (2009) — gluten protein structure in ancient vs. modern wheats.</li>
-        <li id="fn5"><a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2020.00056/full" target="_blank" rel="noopener">Vaquero et al., "Comparative Analysis of in vitro Digestibility and Immunogenicity of Gliadin Proteins from Durum and Einkorn Wheat," <em>Frontiers in Nutrition</em> (2020)</a></li>
-      </ol>
     </div>
   </div>
 </section>
