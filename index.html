@@ -21,9 +21,8 @@
     --rye:#4f626c;
     --line:rgba(43,34,25,.16);
     --line-light:rgba(241,236,223,.18);
-    /* Full width: no inner max-width cap on content */
-    --maxw:1440px;
-    --gutter:clamp(24px,4vw,72px);
+    --maxw:1320px;
+    --gutter:clamp(24px,4vw,64px);
   }
 
   *{box-sizing:border-box;}
@@ -48,7 +47,6 @@
   a{color:inherit;}
   img{max-width:100%;display:block;}
 
-  /* Full-width wrapper — edge-to-edge with generous side padding */
   .wrap{
     width:100%;
     max-width:var(--maxw);
@@ -91,7 +89,7 @@
   .nav nav a:hover{color:var(--ink);border-color:var(--ochre);}
 
   /* ── HERO ── */
-  .hero{padding-block:clamp(56px,9vw,116px) clamp(40px,6vw,72px);}
+  .hero{padding-block:clamp(32px,5vw,64px) clamp(28px,4vw,48px);}
   .hero .eyebrow{margin-bottom:26px;}
   .hero h1{
     font-size:clamp(2.9rem,8vw,5.6rem);
@@ -102,34 +100,42 @@
     font-size:clamp(1.05rem,2vw,1.3rem);
     color:var(--ink-soft);max-width:50ch;line-height:1.55;margin-bottom:38px;
   }
+
+  /* Index strip: wraps cleanly at any width */
   .index-strip{
-    display:flex;flex-wrap:wrap;gap:0;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    font-family:"IBM Plex Mono",monospace;font-size:.8rem;
+    display:flex;
+    flex-wrap:wrap;
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.8rem;
   }
   .index-strip span{
-    padding:14px 22px 14px 0;margin-right:22px;
-    border-right:1px solid var(--line);color:var(--ink-soft);
+    padding:13px 22px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    color:var(--ink-soft);
+    white-space:nowrap;
   }
-  .index-strip span:last-child{border-right:0;margin-right:0;}
   .index-strip b{color:var(--ink);font-weight:600;}
 
   /* ── SECTIONS ── */
-  .section{padding-block:clamp(58px,8vw,104px);}
-  .sec-head{display:flex;gap:14px;align-items:baseline;margin-bottom:42px;flex-wrap:wrap;}
+  .section{padding-block:clamp(36px,5vw,64px);}
+  .sec-head{display:flex;gap:14px;align-items:baseline;margin-bottom:28px;flex-wrap:wrap;}
   .sec-head .num{font-family:"IBM Plex Mono",monospace;color:var(--ochre);font-size:.9rem;}
   .sec-head h2{font-size:clamp(2rem,4.4vw,3rem);}
 
-  /* ── ABOUT ── */
-  /* Photo sits inline-left beside the text, no caption labels */
+  /* ── ABOUT ──
+     Desktop: photo left, text right.
+     Mobile: photo sits above text, centered, portrait crop. */
   .about-layout{
     display:flex;
     gap:clamp(32px,4vw,56px);
     align-items:flex-start;
   }
   .baker-photo{
-    flex:0 0 clamp(140px,18vw,220px);
-    width:clamp(140px,18vw,220px);
+    flex:0 0 clamp(140px,16vw,200px);
+    width:clamp(140px,16vw,200px);
     aspect-ratio:1/1;
     border:1px solid var(--line);
     overflow:hidden;
@@ -137,12 +143,11 @@
   }
   .baker-photo img{width:100%;height:100%;object-fit:cover;display:block;}
   .about-body{flex:1;min-width:0;}
-  .about-body p{font-size:1.08rem;color:var(--ink);line-height:1.7;max-width:72ch;}
+  .about-body p{font-size:1.08rem;color:var(--ink);line-height:1.7;}
   .about-body p + p{margin-top:1em;}
 
   /* ── FLOUR ── */
-  /* Clean single-column readable text with clear visual rhythm */
-  .flour-content{max-width:72ch;}
+  .flour-content{}
   .flour-content p{
     font-size:1.08rem;
     color:var(--ink);
@@ -151,7 +156,6 @@
   }
   .flour-content p:last-child{margin-bottom:0;}
 
-  /* Pull-quote highlight for the key insight */
   .flour-pull{
     margin:2.4em 0;
     padding:1.4em 0 1.4em 1.8em;
@@ -163,24 +167,6 @@
     font-style:italic;
     font-weight:500;
   }
-
-  .spec-strip{
-    display:flex;flex-wrap:wrap;
-    margin-top:48px;
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  }
-  .spec-strip .spec{
-    flex:1 1 220px;padding:20px 28px 20px 0;margin-right:28px;
-    border-right:1px solid var(--line);
-  }
-  .spec-strip .spec:last-child{border-right:0;margin-right:0;}
-  .spec-strip dt{
-    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--ochre);margin-bottom:8px;
-  }
-  .spec-strip dd{margin:0;color:var(--ink);font-size:.95rem;line-height:1.5;}
-  .spec-strip a{text-decoration:underline;text-underline-offset:2px;}
-  .spec-strip a:hover{color:var(--ochre);}
 
   /* ── BAKES ── */
   .bakes{
@@ -211,9 +197,7 @@
   }
 
   /* ── GRAIN ARCHIVE ── */
-  /* Single-column cards, full left-to-right read — no newspaper columns */
   .archive-intro{
-    max-width:72ch;
     margin-bottom:48px;
   }
   .archive-intro p{
@@ -243,40 +227,29 @@
     transition:background .25s;
   }
   .specimen:hover{background:var(--card);}
-
   .specimen .seed{
     width:34px;height:34px;
     border-radius:50% 50% 50% 8px;
     background:var(--ochre);
     transform:rotate(-18deg);
-    grid-row:1 / 2;
-    grid-column:1 / 2;
+    grid-row:1 / 2;grid-column:1 / 2;
     margin-top:4px;
     box-shadow:inset -3px -4px 0 rgba(0,0,0,.14);
-    align-self:start;
-    flex-shrink:0;
+    align-self:start;flex-shrink:0;
   }
   .specimen.s-spelt .seed{background:#c08a2e;}
   .specimen.s-rye .seed{background:var(--rye);}
   .specimen.s-sorghum .seed{background:#8a3a24;}
   .specimen.s-millet .seed{background:#d8b23a;}
-
-  .specimen h3{
-    font-size:1.45rem;
-    grid-row:1 / 2;
-    grid-column:2 / 3;
-    align-self:center;
-  }
+  .specimen h3{font-size:1.45rem;grid-row:1 / 2;grid-column:2 / 3;align-self:center;}
   .specimen .latin{
-    font-family:"Fraunces",serif;
-    font-style:italic;font-size:.95rem;
+    font-family:"Fraunces",serif;font-style:italic;font-size:.95rem;
     color:var(--rye);font-weight:400;
     grid-row:2 / 3;grid-column:2 / 3;
   }
   .specimen p{
     font-size:.96rem;color:var(--ink-soft);margin:0;line-height:1.6;
     grid-row:3 / 4;grid-column:2 / 3;
-    max-width:68ch;
   }
   .specimen .meta{
     font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.08em;
@@ -296,7 +269,6 @@
   .footnotes li::before{content:"[" counter(fn) "]";position:absolute;left:0;color:var(--ochre);}
   .footnotes a{color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px;}
   .footnotes a:hover{color:var(--ochre);}
-
   .cite{
     font-family:"IBM Plex Mono",monospace;font-size:.62em;color:var(--ochre);
     text-decoration:none;vertical-align:super;line-height:0;padding:0 1px;
@@ -326,23 +298,26 @@
   @media (max-width:900px){
     :root{--gutter:clamp(20px,3vw,40px);}
     footer .ftop{grid-template-columns:1fr 1fr;}
-    .about-layout{flex-direction:column;}
-    .baker-photo{width:clamp(100px,30vw,160px);}
   }
   @media (max-width:760px){
     .nav .wrap{padding-block:14px;gap:14px;}
     .nav nav{gap:18px;}
     .nav nav a{font-size:.68rem;}
     footer .ftop{grid-template-columns:1fr;gap:32px;}
-    .index-strip span{padding-right:16px;margin-right:16px;}
     .bakes{gap:18px;}
     .specimen{padding:24px 20px;}
     .specimen .seed{width:28px;height:28px;}
+    /* Photo stacks above text on mobile */
+    .about-layout{flex-direction:column;}
+    .baker-photo{
+      width:clamp(100px,40vw,160px);
+      /* Keep square, don't stretch full width */
+    }
   }
   @media (max-width:600px){
-    .hero{padding-block:44px 36px;}
-    .section{padding-block:44px;}
-    .sec-head{margin-bottom:28px;}
+    .hero{padding-block:28px 24px;}
+    .section{padding-block:32px;}
+    .sec-head{margin-bottom:20px;}
     .bakes{grid-template-columns:1fr;}
     .fnote{flex-direction:column;align-items:flex-start;gap:8px;}
     .specimen{grid-template-columns:1fr;padding:24px 20px;}
@@ -358,7 +333,6 @@
     .nav nav{gap:14px;}
     .nav nav a{font-size:.64rem;letter-spacing:.08em;}
     .index-strip{font-size:.74rem;}
-    .index-strip span{padding:12px 14px 12px 0;margin-right:14px;}
   }
 
   /* ── REVEAL ANIMATION ── */
@@ -392,7 +366,7 @@
   <div class="wrap">
     <span class="tag eyebrow">Microbakery · Stone-milled · Chicago, IL</span>
     <h1>Bread, as it was <em>meant to be.</em></h1>
-    <p class="lead">Microbakery built around ancient grains, stone-milled flour, and the people I get to feed.</p>
+    <p class="lead">Microbakery built around ancient grains, stone-milled flour, and eating lots of bread.</p>
     <div class="index-strip">
       <span><b>01</b> Einkorn</span>
       <span><b>02</b> Spelt</span>
@@ -425,17 +399,16 @@
     <div class="sec-head reveal"><span class="num">§ 02</span><h2>The flour</h2></div>
 
     <div class="flour-content reveal">
-      <p>Eveything I bake is made with stone milled flour, meaning that the whole kernel gets ground together, so the nutrient-rich bran and germ stay in the flour rather than being stripped away. Industrial roller mills separate the kernel into its parts and discard most of the bran and germ, taking the fiber, minerals, healthy fats, and B vitamins with them. What's left is often bleached, then "enriched"<a href="#fn1" class="cite">[1]</a> with a short list of synthetic nutrients to meet FDA minimums.<a href="#fn2" class="cite">[2]</a></p>
+      <p>Everything I bake is made with stone-milled flour, meaning the whole kernel gets ground together so the nutrient-rich bran and germ stay in the flour rather than being stripped away. Industrial roller mills separate the kernel into its parts and discard most of the bran and germ, taking the fiber, minerals, healthy fats, and B vitamins with them. What's left is often bleached, then "enriched"<a href="#fn1" class="cite">[1]</a> with a short list of synthetic nutrients to meet FDA minimums.<a href="#fn2" class="cite">[2]</a></p>
 
       <div class="flour-pull">
         Stone-milled flour doesn't need enriching. The nutrition is already there, exactly as nature intended.
       </div>
 
-      <p>Consuming ancient grains helps create demand to keep these older varieties in circulation. Global agriculture has narrowed around a handful of modern crops, mainly wheat, rice, corn, and barley, which has reduced genetic diversity and made the food system more fragile as the climate shifts.<a href="#fn3" class="cite">[3]</a> Ancient grains tend to need less water and fewer inputs than modern varieties, and they hold up better in drought, heat, and poor soil.<a href="#fn3" class="cite">[3]</a>.</p>
+      <p>Consuming ancient grains helps create demand to keep these older varieties in circulation. Global agriculture has narrowed around a handful of modern crops, mainly wheat, rice, corn, and barley, which has reduced genetic diversity and made the food system more fragile as the climate shifts.<a href="#fn3" class="cite">[3]</a> Ancient grains tend to need less water and fewer inputs than modern varieties, and they hold up better in drought, heat, and poor soil.<a href="#fn3" class="cite">[3]</a></p>
 
       <p>For a long time I went along with the general consensus: whole wheat is healthier but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how much the grain shapes not just how bread tastes, but how it makes you feel.</p>
     </div>
-
 
     <div class="footnotes reveal">
       <ol>
@@ -510,7 +483,7 @@
         <div class="img"><img src="assets/four-grain-bagels.jpeg" alt="A dozen sourdough bagels in Plain, Sesame, and Everything varieties" /></div>
         <div class="body">
           <h3>Five-Grain Sourdough Bagels</h3>
-          <p>Artisan sifted bread flour, Turkey Red wheat, Spelt, and Rye, stone-milled into a naturally leavened bagel dough. Plain, Salt, Sesame, or Everything.</p>
+          <p>Artisan sifted bread flour, Turkey Red wheat, spelt, and rye, stone-milled into a naturally leavened bagel dough. Plain, Salt, Sesame, or Everything.</p>
           <span class="grainline">Wheat · Spelt · Rye</span>
           <span class="allergens">Contains: Wheat (Sesame in Sesame &amp; Everything)</span>
         </div>
@@ -525,8 +498,8 @@
     <div class="sec-head reveal"><span class="num">§ 04</span><h2>The grain archive</h2></div>
 
     <div class="archive-intro reveal">
-      <p>"Ancient grains" are the wheats and cereals that have stayed largely unchanged over the last several hundred years, never bred hard for industrial yield.</p>
-      <p>Many people also find them easier to digest than modern wheat. The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<a href="#fn4" class="cite">[4]</a> Studies of einkorn have also found lower levels of the peptides most often implicated in wheat sensitivity.<a href="#fn5" class="cite">[5]</a> Long sourdough fermentation adds another layer: wild yeast and bacteria pre-digest some of the gluten and break down phytic acid that can otherwise block mineral absorption.</p>
+      <p>"Ancient grains" are the wheats and cereals that have stayed largely unchanged over the last several hundred years, not bred for industrial yield.</p>
+      <p>Many people also find them easier to digest than modern wheat. The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<a href="#fn4" class="cite">[4]</a> Studies of einkorn have also found lower levels of the peptides most often implicated in wheat sensitivity.<a href="#fn5" class="cite">[5]</a> Long sourdough fermentation allows wild yeast and bacteria to pre-digest some of the gluten and break down phytic acid that can otherwise block mineral absorption.</p>
     </div>
 
     <div class="specimens reveal">
@@ -534,35 +507,35 @@
         <span class="seed" aria-hidden="true"></span>
         <h3>Einkorn</h3>
         <span class="latin">Triticum monococcum</span>
-        <p>The only wheat that has never been hybridized, einkorn has just 14 chromosomes compared to modern bread wheat's 42. That simpler genetic structure produces a weaker gluten network that many people find easier to digest, along with notably higher levels of lutein, beta-carotene, and protein than any modern wheat variety. In the kitchen it behaves more like a delicate pastry flour than a bread flour, and its flavor reflects that: buttery and malty, with undertones of honey and toasted almonds. The flour mills to a warm golden color from its natural carotenoids.</p>
+        <p>The only wheat that has never been hybridized, einkorn has just 14 chromosomes compared to modern bread wheat's 42. That simpler genetic structure produces a weaker gluten network that many people find easier to digest, along with notably higher levels of lutein, beta-carotene, and protein than any modern wheat variety. It has a buttery and malty flavor.</p>
         <span class="meta">Domesticated c. 8500 BCE · Fertile Crescent</span>
       </article>
       <article class="specimen s-spelt">
         <span class="seed" aria-hidden="true"></span>
         <h3>Spelt</h3>
         <span class="latin">Triticum spelta</span>
-        <p>Spelt is genetically closer to modern bread wheat than other ancient grains, which makes it the most approachable to bake with. Its gluten is more water-soluble than modern wheat's, which is thought to make it easier to digest and its minerals more bioavailable. Where modern whole wheat can taste flat or slightly bitter, spelt has a distinctly nutty, malty sweetness with a toasty undertone. It produces a tender, slightly dense crumb and pairs naturally with anything warm and savory. It was a staple of central Europe for centuries and remains widely used in German baking today.</p>
+        <p>Spelt is genetically closer to modern bread wheat than other ancient grains, making it the most approachable to bake with. Its gluten is more water-soluble than modern wheat's, which is thought to make it easier to digest and its minerals more bioavailable. It was a staple of central Europe for centuries and remains widely used in German baking today.</p>
         <span class="meta">Domesticated c. 5000 BCE · Near East and Caucasus</span>
       </article>
       <article class="specimen s-rye">
         <span class="seed" aria-hidden="true"></span>
         <h3>Rye</h3>
         <span class="latin">Secale cereale</span>
-        <p>Rye contains less gluten than wheat but far more pentosans, water-absorbing carbohydrates that give rye doughs their characteristic stickiness and help finished loaves stay moist longer. It is exceptionally high in fiber, has a lower glycemic index than most grains, and ferments faster than any other flour in a sourdough culture. The flavor is earthy and complex: a warm, slightly malty depth with a hint of dark fruitiness that wheat alone cannot replicate. Its sourness in a long ferment is real but not sharp, more an undertone than a dominant note, and it deepens rather than fades as the loaf ages.</p>
+        <p>Rye contains less gluten than wheat but far more pentosans, water-absorbing carbohydrates that give rye doughs their characteristic stickiness and help finished loaves stay moist longer. It is exceptionally high in fiber, has a lower glycemic index than most grains, and ferments faster than any other flour in a sourdough culture. The flavor is earthy and complex.</p>
         <span class="meta">Cultivated c. 6600 BCE · South-central Turkey</span>
       </article>
       <article class="specimen s-sorghum">
         <span class="seed" aria-hidden="true"></span>
         <h3>Sorghum</h3>
         <span class="latin">Sorghum bicolor</span>
-        <p>Sorghum is one of the five most important cereal crops in the world and the most important grain in sub-Saharan Africa, yet it is almost unknown in American kitchens. It is naturally gluten-free and has a phenolic antioxidant profile more diverse than any other common cereal, including tannins and anthocyanins that give some varieties their deep red or black color. Nutritionally it is rich in B vitamins, iron, magnesium, and fiber. The flavor of white sorghum is mild and slightly sweet with a clean, neutral base that blends readily into batters and doughs without asserting itself. Toasting brings out a deeper nuttiness.</p>
+        <p>Sorghum is one of the five most important cereal crops in the world and the most important grain in sub-Saharan Africa, yet it is almost unknown in American kitchens. It is naturally gluten-free and is rich in B vitamins, iron, magnesium, and fiber. Sorghum is highly versatile and can be cooked like rice, ground into flour, popped, or made into syrup.</p>
         <span class="meta">Domesticated c. 3000 BCE · Eastern Sudan</span>
       </article>
       <article class="specimen s-millet">
         <span class="seed" aria-hidden="true"></span>
         <h3>Millet</h3>
         <span class="latin">Pennisetum glaucum</span>
-        <p>Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. It is gluten-free and notably high in iron, magnesium, phosphorus, and zinc, with a lower glycemic index than most cereals. The flavor is mild, slightly nutty, and faintly corn-like, with a delicate sweetness that makes it versatile in both sweet and savory applications. In a bake it adds a tender, slightly crumbly texture without heaviness.</p>
+        <p>Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. It is gluten-free and notably high in iron, magnesium, phosphorus, and zinc, with a lower glycemic index than most cereals.</p>
         <span class="meta">Domesticated c. 2500 BCE · Sahel, West Africa</span>
       </article>
     </div>
