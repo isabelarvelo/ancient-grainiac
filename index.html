@@ -418,46 +418,42 @@
 
   .timeline { margin-top: clamp(40px, 6vw, 60px); }
 
+  /* The scale is a 130px tall positioned container.
+     Row layout (top → bottom):
+       0–40px   : grain name labels
+       40–55px  : axis line sits at 48px
+       55–95px  : dots sit centered on axis at 48px, tick marks drop below
+       95–130px : date labels
+  */
   .tl-scale {
     position: relative;
-    height: 110px;
+    height: 130px;
   }
   .tl-axis {
     position: absolute;
     left: 0; right: 0;
-    top: 70px;
+    top: 48px;
     height: 1px;
     background: var(--line-dark);
   }
-  .tl-tick {
-    position: absolute;
-    top: 64px;
-    width: 1px;
-    height: 12px;
-    background: var(--line-dark);
-  }
-  .tl-tick span {
-    position: absolute;
-    top: 17px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--mono);
-    font-size: .68rem;
-    letter-spacing: .1em;
-    color: color-mix(in srgb, var(--butter) 42%, transparent);
-    white-space: nowrap;
-  }
+
+
+
+  /* Nodes: sized buttons centered on the axis line.
+     Name label floats above, date floats below. */
   .tl-node {
     position: absolute;
-    top: 70px;
-    transform: translate(-50%, -50%);
+    top: 48px;                    /* sit on the axis */
+    transform: translateX(-50%);  /* center horizontally on the left% position */
+    width: 36px;
+    height: 36px;
+    margin-top: -18px;            /* pull up so button is vertically centered on axis */
     background: none;
     border: none;
     cursor: pointer;
-    padding: 14px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
   .tl-node .dot {
     width: 13px;
@@ -466,17 +462,34 @@
     border: 2px solid var(--gold-bright);
     background: var(--crust);
     transition: background .2s, box-shadow .2s, transform .2s;
+    flex-shrink: 0;
   }
+  /* Grain name: above the button */
   .tl-node .lbl {
     position: absolute;
-    bottom: 24px;
+    bottom: calc(100% + 4px);
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--serif);
-    font-size: .95rem;
+    font-size: .88rem;
     color: var(--butter);
     white-space: nowrap;
     transition: color .2s;
+    pointer-events: none;
+  }
+  /* Date: below the button */
+  .tl-node .lbl-date {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .1em;
+    color: color-mix(in srgb, var(--butter) 45%, transparent);
+    white-space: nowrap;
+    transition: color .2s;
+    pointer-events: none;
   }
   .tl-node:hover .dot,
   .tl-node:focus-visible .dot { background: var(--gold-bright); transform: scale(1.15); }
@@ -485,6 +498,7 @@
     box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold-bright) 20%, transparent);
   }
   .tl-node[aria-selected="true"] .lbl { color: var(--gold-bright); }
+  .tl-node[aria-selected="true"] .lbl-date { color: color-mix(in srgb, var(--gold-bright) 65%, transparent); }
   .tl-node:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 4px; border-radius: 8px; }
 
   .specimen {
@@ -724,10 +738,10 @@
     .bakes-grid { grid-template-columns: 1fr; }
     .nav-links { gap: 16px; }
     .tl-node .lbl { display: none; }
-    .tl-scale { height: 76px; }
-    .tl-axis { top: 44px; }
-    .tl-tick { top: 38px; }
-    .tl-node { top: 44px; }
+    .tl-node .lbl-date { display: none; }
+    .tl-scale { height: 60px; }
+    .tl-axis { top: 30px; }
+    .tl-node { top: 30px; margin-top: -18px; }
     footer .wrap { grid-template-columns: 1fr; }
   }
 </style>
@@ -929,16 +943,12 @@
       <div class="timeline reveal">
         <div class="tl-scale" role="tablist" aria-label="Grains by domestication date">
           <div class="tl-axis" aria-hidden="true"></div>
-          <div class="tl-tick" style="left:0%"    aria-hidden="true"><span>9000 BCE</span></div>
-          <div class="tl-tick" style="left:28.6%" aria-hidden="true"><span>7000 BCE</span></div>
-          <div class="tl-tick" style="left:57.1%" aria-hidden="true"><span>5000 BCE</span></div>
-          <div class="tl-tick" style="left:85.7%" aria-hidden="true"><span>3000 BCE</span></div>
 
-          <button class="tl-node" role="tab" id="tab-einkorn" data-grain="einkorn" style="left:7.1%"  aria-selected="true"  aria-controls="specimen-card"><span class="lbl">Einkorn</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-spelt"   data-grain="spelt"   style="left:57.1%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Spelt</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-sorghum" data-grain="sorghum" style="left:85.7%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Sorghum</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-millet"  data-grain="millet"  style="left:92.9%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Millet</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-rye"     data-grain="rye"     style="left:100%"  aria-selected="false" aria-controls="specimen-card"><span class="lbl">Rye</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-einkorn" data-grain="einkorn" style="left:7.1%"  aria-selected="true"  aria-controls="specimen-card"><span class="lbl">Einkorn</span><span class="dot"></span><span class="lbl-date">c. 8500 BCE</span></button>
+          <button class="tl-node" role="tab" id="tab-spelt"   data-grain="spelt"   style="left:57.1%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Spelt</span><span class="dot"></span><span class="lbl-date">c. 5000 BCE</span></button>
+          <button class="tl-node" role="tab" id="tab-sorghum" data-grain="sorghum" style="left:85.7%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Sorghum</span><span class="dot"></span><span class="lbl-date">c. 3000 BCE</span></button>
+          <button class="tl-node" role="tab" id="tab-millet"  data-grain="millet"  style="left:92.9%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Millet</span><span class="dot"></span><span class="lbl-date">c. 2500 BCE</span></button>
+          <button class="tl-node" role="tab" id="tab-rye"     data-grain="rye"     style="left:100%"  aria-selected="false" aria-controls="specimen-card"><span class="lbl">Rye</span><span class="dot"></span><span class="lbl-date">c. 2000 BCE</span></button>
         </div>
 
         <div class="specimen" id="specimen-card" role="tabpanel" aria-live="polite">
