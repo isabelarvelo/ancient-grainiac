@@ -4,208 +4,379 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ancient Grainiac — Microbakery</title>
-<meta name="description" content="Ancient Grainiac is a Chicago microbakery baking with the oldest grains we know — einkorn, spelt, rye, sorghum, and millet. Stoneground, slow-fermented, small-batch." />
+<meta name="description" content="Ancient Grainiac is a Chicago microbakery baking with the oldest grains we know — einkorn, spelt, rye, sorghum, and millet." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
 <style>
-  :root{
-    --flour:#F6EFE1;
-    --bran:#EDE3CE;
-    --crust:#2B1D12;
-    --crust-soft:#3A2A1B;
-    --ink:#33261A;
+  /* ─── TOKENS ─── */
+  :root {
+    --flour:   #F6EFE1;
+    --bran:    #EDE3CE;
+    --crust:   #2B1D12;
+    --crust-soft: #3A2A1B;
+    --ink:     #33261A;
     --ink-soft:#6B5A45;
-    --gold:#B47F22;
-    --gold-bright:#D19A38;
-    --sage:#75805F;
-    --butter:#EFDFBB;
-    --line:rgba(51,38,26,.15);
-    --line-dark:rgba(239,223,187,.16);
-    --maxw:1320px;
-    --gutter:clamp(24px,4vw,64px);
-    --arch:44% 44% 0 0;
+    --gold:    #B47F22;
+    --gold-bright: #D19A38;
+    --sage:    #75805F;
+    --butter:  #EFDFBB;
+    --line:    rgba(51,38,26,.13);
+    --line-dark: rgba(239,223,187,.14);
+    --maxw:    1300px;
+    --gutter:  clamp(22px, 5vw, 64px);
+    --arch:    50% 50% 0 0 / 55% 55% 0 0;
+
+    /* type */
+    --serif:  'Fraunces', Georgia, serif;
+    --sans:   'IBM Plex Sans', system-ui, sans-serif;
+    --mono:   'IBM Plex Mono', 'Courier New', monospace;
   }
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--flour);
-    color:var(--ink);
-    font-family:"Karla",system-ui,sans-serif;
-    font-size:17px;
-    line-height:1.68;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{
-    font-family:"Young Serif",Georgia,serif;
-    font-weight:400;
-    line-height:1.06;
-    margin:0;
-  }
-  p{margin:0 0 1em;}
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  ::selection{background:var(--gold);color:var(--flour);}
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
 
-  .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);}
-
-  .mono{
-    font-family:"Spline Sans Mono",monospace;
-    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  }
-  .eyebrow{color:var(--gold);display:flex;align-items:center;gap:12px;}
-  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);}
-  .dark .eyebrow{color:var(--gold-bright);}
-  .dark .eyebrow::before{background:var(--gold-bright);}
-
-  sup a{color:var(--gold);text-decoration:none;font-weight:700;font-size:.72em;}
-  sup a:hover{text-decoration:underline;}
-  .dark sup a{color:var(--gold-bright);}
-
-  /* NAV */
-  header.nav{
-    position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb, var(--flour) 88%, transparent);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-block:14px;gap:20px;}
-  .brand{
-    font-family:"Young Serif",serif;font-size:1.25rem;letter-spacing:-.01em;
-    text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:10px;
-  }
-  .brand svg{flex:0 0 auto;}
-  .nav nav{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none;min-width:0;}
-  .nav nav::-webkit-scrollbar{display:none;}
-  .nav nav a{
-    font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.13em;
-    text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
-    padding-bottom:3px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
-    white-space:nowrap;flex:0 0 auto;
-  }
-  .nav nav a:hover,.nav nav a:focus-visible{color:var(--ink);border-color:var(--gold);}
-  .nav .order-link{color:var(--gold);font-weight:600;}
-
-  /* HERO */
-  .hero{padding-block:clamp(32px,5vw,64px) clamp(28px,4vw,48px);overflow:hidden;}
-  .hero .wrap{
-    display:block;
-  }
-  .hero-copy{padding-bottom:clamp(36px,5vw,72px);}
-  .hero .eyebrow{margin-bottom:clamp(20px,3vw,34px);}
-  .hero h1{
-    font-size:clamp(2.9rem,8vw,5.6rem);
-    max-width:12ch;margin-bottom:.45em;letter-spacing:-.015em;
-  }
-  .hero h1 .accent{color:var(--gold);}
-  .hero .lead{
-    font-size:clamp(1.02rem,1.7vw,1.22rem);color:var(--ink-soft);
-    max-width:42ch;margin-bottom:2em;
-  }
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
-  .btn{
-    font-family:"Spline Sans Mono",monospace;font-size:.78rem;letter-spacing:.12em;
-    text-transform:uppercase;text-decoration:none;
-    padding:15px 26px;border-radius:999px;transition:transform .2s,background .2s,color .2s,border-color .2s;
-    display:inline-flex;align-items:center;gap:10px;
-  }
-  .btn-primary{background:var(--crust);color:var(--butter);}
-  .btn-primary:hover{background:var(--gold);color:var(--crust);transform:translateY(-2px);}
-  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
-  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
-
-  .hero-art{position:relative;align-self:end;}
-  .hero-art .arch{
-    border-radius:var(--arch);overflow:hidden;
-    border:1px solid var(--line);border-bottom:none;
-    aspect-ratio:4/4.7;
-    background:var(--bran);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .hero-art .arch .placeholder-text{
-    font-family:"Young Serif",serif;
-    color:var(--ink-soft);
-    font-size:1rem;
-    text-align:center;
-    padding:20px;
-    opacity:.5;
-  }
-  .hero-art img{width:100%;height:100%;object-fit:cover;}
-  .hero-art .photo-chip{
-    position:absolute;left:-14px;bottom:22px;
-    background:var(--crust);color:var(--butter);
-    font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
-    padding:9px 14px;border-radius:6px;transform:rotate(-2deg);
+  body {
+    margin: 0;
+    background: var(--flour);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* grain index strip */
-  .grain-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bran);}
-  .grain-strip .wrap{display:grid;grid-template-columns:repeat(5,1fr);}
-  .grain-strip a{
-    text-decoration:none;padding:18px 10px;text-align:center;
-    border-left:1px solid var(--line);transition:background .2s;
-    display:flex;flex-direction:column;gap:2px;
-  }
-  .grain-strip a:first-child{border-left:none;}
-  .grain-strip a:hover{background:var(--flour);}
-  .grain-strip .g-name{font-family:"Young Serif",serif;font-size:1rem;}
-  .grain-strip .g-date{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.12em;color:var(--ink-soft);text-transform:uppercase;}
-
-  /* SECTIONS */
-  section{padding-block:clamp(36px,5vw,64px);}
-  .dark{background:var(--crust);color:var(--butter);}
-  .dark h2,.dark h3{color:var(--butter);}
-  .sec-head{margin-bottom:clamp(28px,4vw,40px);}
-  .sec-head h2{font-size:clamp(2rem,4.4vw,3rem);margin-top:18px;letter-spacing:-.01em;}
-
-  /* baker */
-  .baker .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:center;}
-  .baker .arch{border-radius:var(--arch);overflow:hidden;background:var(--bran);border:1px solid var(--line);}
-  .baker .arch img{width:100%;height:100%;object-fit:cover;}
-  .baker h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin:16px 0 22px;}
-  .baker p{max-width:56ch;}
-  .sig{font-family:"Young Serif",serif;color:var(--gold);font-size:1.15rem;margin-top:8px;}
-
-  /* flour: mill comparison */
-  .mill-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,32px);margin-top:8px;}
-  .mill-card{
-    border:1px solid var(--line-dark);border-radius:16px;padding:clamp(22px,3vw,34px);
-    background:var(--crust-soft);
-  }
-  .mill-card.stone{border-color:color-mix(in srgb, var(--gold-bright) 55%, transparent);}
-  .mill-card h3{font-size:1.3rem;margin:14px 0 12px;}
-  .mill-card p{color:color-mix(in srgb, var(--butter) 78%, transparent);margin-bottom:0;font-size:.98rem;}
-  .mill-card .mono{color:var(--gold-bright);}
-  .mill-card.roller .mono{color:color-mix(in srgb, var(--butter) 55%, transparent);}
-  .flour-note{
-    margin-top:clamp(28px,4vw,40px);
-    font-family:"Young Serif",serif;font-size:clamp(1.15rem,2vw,1.45rem);line-height:1.45;
-    white-space:nowrap;
-  }
-  .flour-note .accent{color:var(--gold-bright);}
-
-  /* why */
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
-  .why-card{border-top:2px solid var(--gold);padding-top:22px;}
-  .why-card h3{font-size:1.25rem;margin:12px 0 12px;}
-  .why-card p{color:var(--ink-soft);font-size:.98rem;margin-bottom:0;}
-  .why-aside{
-    margin-top:clamp(36px,5vw,56px);border-left:3px solid var(--gold);
-    padding:6px 0 6px clamp(18px,3vw,28px);max-width:62ch;
-    font-size:1.05rem;font-style:italic;color:var(--ink-soft);
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 300;
+    line-height: 1.07;
+    margin: 0;
   }
 
-  /* BAKES */
-  .bakes {
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--gold); color: var(--flour); }
+
+  /* ─── LAYOUT ─── */
+  .wrap {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  section { padding-block: clamp(56px, 8vw, 100px); }
+
+  .dark {
+    background: var(--crust);
+    color: var(--butter);
+  }
+  .dark h2, .dark h3 { color: var(--butter); }
+
+  /* ─── TYPE UTILITIES ─── */
+  .label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: clamp(18px, 3vw, 28px);
+  }
+  .label::before {
+    content: '';
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+  .dark .label { color: var(--gold-bright); }
+
+  .sec-title {
+    font-size: clamp(2rem, 4.2vw, 3rem);
+    letter-spacing: -.015em;
+    margin-top: 10px;
+  }
+
+  .mono-sm {
+    font-family: var(--mono);
+    font-size: .64rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  sup a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: .72em;
+    font-weight: 500;
+  }
+  sup a:hover { text-decoration: underline; }
+  .dark sup a { color: var(--gold-bright); }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 26px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform .2s, background .2s, color .2s, border-color .2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--crust);
+    color: var(--butter);
+  }
+  .btn-primary:hover {
+    background: var(--gold);
+    color: var(--crust);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2em;
+  }
+
+  /* ─── NAV ─── */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--flour) 90%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 13px;
+    gap: 20px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-decoration: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ink);
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav-links a:hover,
+  .nav-links a:focus-visible { color: var(--ink); border-color: var(--gold); }
+  .nav-links .nav-order { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding-block: clamp(56px, 8vw, 100px);
+    border-bottom: 1px solid var(--line);
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 7.5vw, 5.4rem);
+    max-width: 14ch;
+    margin-bottom: .4em;
+    letter-spacing: -.02em;
+  }
+  .hero h1 .accent { color: var(--gold); }
+  @media (min-width: 768px) {
+    .lead {
+      white-space: nowrap;
+    }
+  }
+
+  /* ─── GRAIN STRIP ─── */
+  .grain-strip {
+    border-bottom: 1px solid var(--line);
+    background: var(--bran);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .grain-strip::-webkit-scrollbar { display: none; }
+  .grain-strip .wrap {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    min-width: 480px;
+    padding-inline: 0;
+  }
+  .grain-strip a {
+    text-decoration: none;
+    padding: 17px 10px;
+    text-align: center;
+    border-left: 1px solid var(--line);
+    transition: background .2s;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: var(--ink);
+  }
+  .grain-strip a:first-child { border-left: none; }
+  .grain-strip a:hover { background: var(--flour); }
+  .grain-strip .g-name {
+    font-family: var(--serif);
+    font-size: .98rem;
+    font-weight: 400;
+  }
+  .grain-strip .g-date {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  /* ─── BAKER ─── */
+  .baker .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .baker-arch {
+    border-radius: var(--arch);
+    overflow: hidden;
+    background: var(--bran);
+    border: 1px solid var(--line);
+    aspect-ratio: 4 / 5;
+  }
+  .baker-arch img { width: 100%; height: 100%; object-fit: cover; }
+  .baker-copy h2 {
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    margin: 10px 0 20px;
+  }
+  .baker-copy p { color: var(--ink-soft); max-width: 54ch; }
+  .sig {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1.1rem;
+    margin-top: 12px !important;
+  }
+
+  /* ─── FLOUR ─── */
+  .mill-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(18px, 2.5vw, 28px);
+    margin-top: 32px;
+  }
+  .mill-card {
+    border: 1px solid var(--line-dark);
+    border-radius: 14px;
+    padding: clamp(22px, 3vw, 32px);
+    background: var(--crust-soft);
+  }
+  .mill-card.stone {
+    border-color: color-mix(in srgb, var(--gold-bright) 50%, transparent);
+  }
+  .mill-card .card-label {
+    font-family: var(--mono);
+    font-size: .63rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 12px;
+  }
+  .mill-card.roller .card-label {
+    color: color-mix(in srgb, var(--butter) 45%, transparent);
+  }
+  .mill-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+  .mill-card p {
+    color: color-mix(in srgb, var(--butter) 76%, transparent);
+    font-size: .96rem;
+  }
+  .flour-note {
+    margin-top: clamp(28px, 4vw, 44px);
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.45;
+    font-weight: 300;
+  }
+  .flour-note .accent { color: var(--gold-bright); }
+
+  /* ─── WHY ─── */
+  .why-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
+    gap: clamp(20px, 3vw, 36px);
+    margin-top: 8px;
+  }
+  .why-card { border-top: 2px solid var(--gold); padding-top: 22px; }
+  .why-card .why-label {
+    font-family: var(--mono);
+    font-size: .63rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .why-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+  .why-card p { color: var(--ink-soft); font-size: .96rem; }
+  .why-aside {
+    margin-top: clamp(36px, 5vw, 52px);
+    border-left: 3px solid var(--gold);
+    padding: 4px 0 4px clamp(18px, 3vw, 28px);
+    max-width: 62ch;
+    font-size: 1.04rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* ─── BAKES ─── */
+  .bakes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     border-top: 1px solid var(--line);
     border-left: 1px solid var(--line);
+    margin-top: 8px;
   }
   .bake {
     display: flex;
@@ -213,269 +384,464 @@
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
   }
-  .bake .img {
-    aspect-ratio: 4 / 3.2;
+  .bake-img {
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     border-bottom: 1px solid var(--line);
     background: var(--bran);
   }
-  .bake .img img {
+  .bake-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform .5s ease;
   }
-  .bake:hover .img img { transform: scale(1.04); }
-  .bake .body {
-    padding: clamp(18px,2.5vw,28px);
+  .bake:hover .bake-img img { transform: scale(1.04); }
+  .bake-body {
+    padding: clamp(18px, 2.5vw, 26px);
     display: flex;
     flex-direction: column;
-    gap: 8px;
     flex: 1;
+    gap: 6px;
   }
-  .bake .body h3 {
-    font-size: 1.15rem;
-    margin-bottom: 2px;
-  }
-  .bake .body p {
+  .bake-body h3 { font-size: 1.1rem; }
+  .bake-body p {
     color: var(--ink-soft);
-    font-size: .95rem;
-    margin-bottom: 0;
+    font-size: .93rem;
     flex: 1;
   }
-  .bake .grainline {
-    display: block;
-    font-family: "Spline Sans Mono", monospace;
-    font-size: .62rem;
+  .bake-grain {
+    font-family: var(--mono);
+    font-size: .6rem;
     letter-spacing: .13em;
     text-transform: uppercase;
     color: var(--gold);
-    padding-top: 4px;
+    margin-top: 4px;
   }
-  .bake .allergens {
-    display: block;
-    font-family: "Spline Sans Mono", monospace;
-    font-size: .58rem;
+  .bake-allergens {
+    font-family: var(--mono);
+    font-size: .57rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    padding-top: 2px;
     border-top: 1px solid var(--line);
-    margin-top: 4px;
     padding-top: 10px;
+    margin-top: 4px;
   }
-  .bakes-cta{margin-top:clamp(40px,6vw,64px);text-align:center;}
-  .bakes-cta p{color:var(--ink-soft);margin-bottom:18px;max-width:52ch;margin-inline:auto;}
-
-  /* GRAIN ARCHIVE */
-  .archive .sec-head{max-width:720px;}
-  .archive .sec-head p{color:color-mix(in srgb, var(--butter) 75%, transparent);}
-
-  .timeline{margin-top:clamp(40px,6vw,64px);}
-  .tl-scale{position:relative;height:110px;}
-  .tl-axis{position:absolute;left:0;right:0;top:70px;height:1px;background:var(--line-dark);}
-  .tl-tick{position:absolute;top:64px;width:1px;height:13px;background:var(--line-dark);}
-  .tl-tick span{
-    position:absolute;top:18px;left:50%;transform:translateX(-50%);
-    font-family:"Spline Sans Mono",monospace;font-size:.6rem;letter-spacing:.1em;
-    color:color-mix(in srgb, var(--butter) 45%, transparent);white-space:nowrap;
+  .bakes-footer {
+    margin-top: clamp(36px, 5vw, 52px);
+    text-align: center;
   }
-  .tl-node{
-    position:absolute;top:70px;transform:translate(-50%,-50%);
-    background:none;border:none;cursor:pointer;padding:14px;
-    display:flex;flex-direction:column;align-items:center;
-  }
-  .tl-node .dot{
-    width:14px;height:14px;border-radius:50%;
-    border:2px solid var(--gold-bright);background:var(--crust);
-    transition:background .2s, box-shadow .2s, transform .2s;
-  }
-  .tl-node .lbl{
-    position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-    font-family:"Young Serif",serif;font-size:.92rem;color:var(--butter);white-space:nowrap;
-    transition:color .2s;
-  }
-  .tl-node:hover .dot,.tl-node:focus-visible .dot{background:var(--gold-bright);transform:scale(1.15);}
-  .tl-node[aria-selected="true"] .dot{
-    background:var(--gold-bright);
-    box-shadow:0 0 0 6px color-mix(in srgb, var(--gold-bright) 22%, transparent);
-  }
-  .tl-node[aria-selected="true"] .lbl{color:var(--gold-bright);}
-  .tl-node:focus-visible{outline:2px solid var(--gold-bright);outline-offset:4px;border-radius:8px;}
-
-  .specimen{
-    margin-top:clamp(28px,4vw,44px);
-    border:1px solid var(--line-dark);border-radius:18px;
-    background:var(--crust-soft);
-    padding:clamp(26px,4vw,44px);
-    display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);
-  }
-  .specimen.fade{animation:specfade .35s ease;}
-  @keyframes specfade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-  .spec-latin{font-style:italic;color:var(--gold-bright);font-size:1rem;margin-bottom:2px;}
-  .specimen h3{font-size:clamp(1.7rem,3vw,2.3rem);margin:4px 0 16px;}
-  .specimen .spec-body{color:color-mix(in srgb, var(--butter) 80%, transparent);margin-bottom:0;}
-  .spec-data{border-left:1px solid var(--line-dark);padding-left:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:18px;align-self:center;}
-  .spec-row .k{
-    font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-    color:color-mix(in srgb, var(--butter) 50%, transparent);margin-bottom:3px;
-  }
-  .spec-row .v{font-family:"Young Serif",serif;font-size:1.02rem;color:var(--butter);margin:0;}
-  .spec-row .v.gf{color:var(--gold-bright);}
-
-  /* ORDER / CONTACT */
-  .order .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:center;}
-  .order h2{font-size:clamp(2rem,4vw,3.1rem);margin:16px 0 20px;letter-spacing:-.01em;}
-  .order .lead{color:var(--ink-soft);max-width:46ch;margin-bottom:2em;}
-  .order-card{
-    border:1px solid var(--line);border-radius:18px;background:var(--bran);
-    padding:clamp(24px,3.5vw,36px);display:flex;flex-direction:column;gap:20px;
-  }
-  .order-card .row .k{
-    font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-soft);margin-bottom:4px;
-  }
-  .order-card .row .v{font-size:1.02rem;margin:0;}
-  .order-card a{text-decoration:none;border-bottom:1px solid var(--gold);transition:color .2s;}
-  .order-card a:hover{color:var(--gold);}
-
-  /* references + footer */
-  .refs{border-top:1px solid var(--line);padding-block:clamp(36px,5vw,56px);}
-  .refs h2{font-size:.78rem;font-family:"Spline Sans Mono",monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:20px;}
-  .refs ol{margin:0;padding-left:22px;color:var(--ink-soft);font-size:.88rem;display:flex;flex-direction:column;gap:8px;}
-  .refs a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);}
-  .refs a:hover{border-color:var(--gold);color:var(--gold);}
-
-  footer{background:var(--crust);color:var(--butter);}
-  footer .wrap{padding-block:30px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
-  footer .mono{color:color-mix(in srgb, var(--butter) 55%, transparent);letter-spacing:.12em;}
-
-  /* reveal on scroll */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
-  .reveal.in{opacity:1;transform:none;}
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .reveal{opacity:1;transform:none;transition:none;}
-    .specimen.fade{animation:none;}
-    .bake:hover .img img{transform:none;}
-    .btn:hover{transform:none;}
+  .bakes-footer p {
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    max-width: 50ch;
+    margin-inline: auto;
   }
 
-  /* RESPONSIVE */
-  @media (max-width:900px){
-    :root{--gutter:clamp(20px,3vw,40px);}
+  /* ─── GRAIN ARCHIVE ─── */
+  .archive-intro {
+    max-width: 68ch;
+    color: color-mix(in srgb, var(--butter) 72%, transparent);
+    margin-top: 6px;
+    font-size: .97rem;
   }
-  @media (max-width:960px){
-    .hero .wrap{grid-template-columns:1fr;align-items:start;}
-    .hero-art{max-width:440px;}
-    .hero-copy{padding-bottom:0;}
-    .bakes{grid-template-columns:repeat(2,1fr);}
-    .why-grid{grid-template-columns:1fr;gap:28px;}
-    .baker .wrap{grid-template-columns:1fr;}
-    .baker .arch{max-width:400px;}
-    .order .wrap{grid-template-columns:1fr;}
-    .specimen{grid-template-columns:1fr;}
-    .spec-data{border-left:none;border-top:1px solid var(--line-dark);padding-left:0;padding-top:22px;flex-direction:row;flex-wrap:wrap;gap:22px 36px;}
+
+  .timeline { margin-top: clamp(40px, 6vw, 60px); }
+
+  .tl-scale {
+    position: relative;
+    height: 110px;
   }
-  @media (max-width:640px){
-    .mill-grid{grid-template-columns:1fr;}
-    .bakes{grid-template-columns:1fr;}
-    .grain-strip .wrap{grid-template-columns:repeat(5,minmax(96px,1fr));overflow-x:auto;padding-inline:0;scrollbar-width:none;}
-    .tl-node .lbl{display:none;}
-    .tl-scale{height:78px;}
-    .tl-axis{top:44px;}
-    .tl-tick{top:38px;}
-    .tl-node{top:44px;}
-    .nav nav{gap:18px;}
+  .tl-axis {
+    position: absolute;
+    left: 0; right: 0;
+    top: 70px;
+    height: 1px;
+    background: var(--line-dark);
+  }
+  .tl-tick {
+    position: absolute;
+    top: 64px;
+    width: 1px;
+    height: 12px;
+    background: var(--line-dark);
+  }
+  .tl-tick span {
+    position: absolute;
+    top: 17px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .1em;
+    color: color-mix(in srgb, var(--butter) 42%, transparent);
+    white-space: nowrap;
+  }
+  .tl-node {
+    position: absolute;
+    top: 70px;
+    transform: translate(-50%, -50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tl-node .dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--gold-bright);
+    background: var(--crust);
+    transition: background .2s, box-shadow .2s, transform .2s;
+  }
+  .tl-node .lbl {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--serif);
+    font-size: .88rem;
+    color: var(--butter);
+    white-space: nowrap;
+    transition: color .2s;
+  }
+  .tl-node:hover .dot,
+  .tl-node:focus-visible .dot { background: var(--gold-bright); transform: scale(1.15); }
+  .tl-node[aria-selected="true"] .dot {
+    background: var(--gold-bright);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold-bright) 20%, transparent);
+  }
+  .tl-node[aria-selected="true"] .lbl { color: var(--gold-bright); }
+  .tl-node:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 4px; border-radius: 8px; }
+
+  .specimen {
+    margin-top: clamp(24px, 3vw, 36px);
+    border: 1px solid var(--line-dark);
+    border-radius: 16px;
+    background: var(--crust-soft);
+    padding: clamp(26px, 4vw, 44px);
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(24px, 4vw, 52px);
+  }
+  .specimen.fade { animation: specfade .32s ease; }
+  @keyframes specfade {
+    from { opacity: 0; transform: translateY(7px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .spec-latin {
+    font-style: italic;
+    color: var(--gold-bright);
+    font-size: .95rem;
+    margin-bottom: 4px;
+  }
+  .specimen h3 {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    margin-bottom: 14px;
+  }
+  .spec-body { color: color-mix(in srgb, var(--butter) 78%, transparent); }
+  .spec-data {
+    border-left: 1px solid var(--line-dark);
+    padding-left: clamp(20px, 3vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-self: center;
+  }
+  .spec-row .k {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--butter) 48%, transparent);
+    margin-bottom: 3px;
+  }
+  .spec-row .v {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--butter);
+    margin: 0;
+  }
+  .spec-row .v.gf { color: var(--gold-bright); }
+
+  /* ─── ORDER ─── */
+  .order .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .order h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 10px 0 18px;
+    letter-spacing: -.015em;
+  }
+  .order .lead { color: var(--ink-soft); max-width: 44ch; }
+  .order-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bran);
+    padding: clamp(24px, 3.5vw, 36px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .order-card .row { display: flex; flex-direction: column; gap: 3px; }
+  .order-card .row .k {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .order-card .row .v { font-size: 1rem; margin: 0; }
+  .order-card a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    transition: color .2s;
+  }
+  .order-card a:hover { color: var(--gold); }
+  .order-card hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  /* ─── REFERENCES ─── */
+  .refs {
+    border-top: 1px solid var(--line);
+    padding-block: clamp(36px, 5vw, 52px);
+  }
+  .refs .refs-label {
+    font-family: var(--mono);
+    font-size: .64rem;
+    font-weight: 500;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+  .refs ol {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--ink-soft);
+    font-size: .87rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .refs a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: color .2s, border-color .2s;
+  }
+  .refs a:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--crust);
+    color: var(--butter);
+  }
+  footer .wrap {
+    padding-block: 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(24px, 4vw, 48px);
+    border-bottom: 1px solid var(--line-dark);
+  }
+  footer .ft-col .ft-label {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--butter) 45%, transparent);
+    margin-bottom: 12px;
+  }
+  footer .ft-col h3 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    color: var(--butter);
+  }
+  footer .ft-col p,
+  footer .ft-col ul {
+    color: color-mix(in srgb, var(--butter) 68%, transparent);
+    font-size: .93rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  footer .ft-col a {
+    color: color-mix(in srgb, var(--butter) 68%, transparent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  footer .ft-col a:hover {
+    color: var(--gold-bright);
+    border-color: var(--gold-bright);
+  }
+  .footer-base {
+    padding-block: 20px;
+  }
+  .footer-base .wrap {
+    grid-template-columns: 1fr;
+    border-bottom: none;
+    padding-block: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-base .mono-sm {
+    color: color-mix(in srgb, var(--butter) 38%, transparent);
+    letter-spacing: .12em;
+  }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .65s ease, transform .65s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── REDUCED MOTION ─── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .specimen.fade { animation: none; }
+    .bake:hover .bake-img img { transform: none; }
+    .btn:hover { transform: none; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .baker .wrap { grid-template-columns: 1fr; }
+    .baker-arch { max-width: 380px; }
+    .bakes-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; gap: 28px; }
+    .order .wrap { grid-template-columns: 1fr; }
+    .specimen { grid-template-columns: 1fr; }
+    .spec-data {
+      border-left: none;
+      border-top: 1px solid var(--line-dark);
+      padding-left: 0;
+      padding-top: 22px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .mill-grid { grid-template-columns: 1fr; }
+    .bakes-grid { grid-template-columns: 1fr; }
+    .nav-links { gap: 16px; }
+    .tl-node .lbl { display: none; }
+    .tl-scale { height: 76px; }
+    .tl-axis { top: 44px; }
+    .tl-tick { top: 38px; }
+    .tl-node { top: 44px; }
+    footer .wrap { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body id="top">
 
-<header class="nav">
+<!-- ══ NAV ══ -->
+<header class="site-nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Ancient Grainiac home">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 22V7" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"/>
         <path d="M12 8c-3 0-4.5-1.8-4.5-4.5C10.2 3.5 12 5 12 8Zm0 0c3 0 4.5-1.8 4.5-4.5C13.8 3.5 12 5 12 8Zm0 5c-3 0-4.5-1.8-4.5-4.5C10.2 8.5 12 10 12 13Zm0 0c3 0 4.5-1.8 4.5-4.5C13.8 8.5 12 10 12 13Zm0 5c-3 0-4.5-1.8-4.5-4.5c2.7 0 4.5 1.5 4.5 4.5Zm0 0c3 0 4.5-1.8 4.5-4.5c-2.7 0-4.5 1.5-4.5 4.5Z" fill="var(--gold)"/>
       </svg>
       Ancient Grainiac
     </a>
-    <nav aria-label="Site">
+    <nav class="nav-links" aria-label="Site">
       <a href="#about">The Baker</a>
       <a href="#flour">The Flour</a>
       <a href="#why">The Why</a>
       <a href="#bakes">The Bakes</a>
       <a href="#grains">The Grains</a>
-      <a class="order-link" href="#order">Order</a>
+      <a href="#order" class="nav-order">Order</a>
     </nav>
   </div>
 </header>
 
 <main>
-  <!-- HERO -->
+  <!-- ══ HERO ══ -->
   <section class="hero" aria-label="Introduction">
     <div class="wrap">
-      <div class="hero-copy">
-        <p class="mono eyebrow">Microbakery · Chicago, IL</p>
-        <h1>Bread, as it was <span class="accent">meant to be.</span></h1>
-        <p class="lead">Microbakery built around ancient grains, stone-milled flour, and a love of bread.</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#order">Order this week's bake</a>
-          <a class="btn btn-ghost" href="#grains">The grains</a>
-        </div>
+      <p class="label">Microbakery · Chicago, IL</p>
+      <h1>Bread, as it was <span class="accent">meant to be.</span></h1>
+      <p class="lead">Built around ancient grains, stone-milled flour, and a deep love of good bread.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#order">Order this week's bake</a>
+        <a class="btn btn-ghost" href="#grains">The grains</a>
       </div>
     </div>
   </section>
 
-  <!-- GRAIN INDEX STRIP -->
+  <!-- ══ GRAIN STRIP ══ -->
   <div class="grain-strip" aria-label="The five grains">
     <div class="wrap">
       <a href="#grains" data-grain="einkorn"><span class="g-name">Einkorn</span><span class="g-date">c. 8500 BCE</span></a>
-      <a href="#grains" data-grain="millet"><span class="g-name">Millet</span><span class="g-date">c. 8000 BCE</span></a>
-      <a href="#grains" data-grain="rye"><span class="g-name">Rye</span><span class="g-date">c. 6600 BCE</span></a>
+      <a href="#grains" data-grain="millet"><span class="g-name">Millet</span><span class="g-date">c. 2500 BCE</span></a>
+      <a href="#grains" data-grain="rye"><span class="g-name">Rye</span><span class="g-date">c. 2000 BCE</span></a>
       <a href="#grains" data-grain="spelt"><span class="g-name">Spelt</span><span class="g-date">c. 5000 BCE</span></a>
       <a href="#grains" data-grain="sorghum"><span class="g-name">Sorghum</span><span class="g-date">c. 3000 BCE</span></a>
     </div>
   </div>
 
-  <!-- BAKER -->
+  <!-- ══ BAKER ══ -->
   <section class="baker" id="about">
     <div class="wrap">
-      <div class="arch reveal">
+      <div class="baker-arch reveal">
         <img src="assets/baker-grainiac.png" alt="Illustrated portrait of Isa Arvelo holding a loaf of bread" loading="lazy" />
       </div>
-<<<<<<< HEAD
-      <div class="about-body">
-        <p>I'm Isa, and I love ancient grains! I first discovered them through their benefits for soil health and crop diversity, but once I started baking sourdough with them, I was hooked.</p>
-        <p>Ancient Grainiac is my way of sharing the goodness of these grains with you. I make wholesome bread and baked goods in my Chicago kitchen using simple ingredients, guided by tradition and science.</p>
-=======
-      <div class="reveal">
-        <p class="mono eyebrow">The baker</p>
-        <h2>Hi, I'm Isa and I love ancient grains!</h2>
-        <p>My first introduction to ancient grains was through regenerative agriculture and the role they play in building soil health and preserving biodiversity. Not only are these crops climate resilient, they also offer a wide variety of health and nutritional benefits, including high-quality proteins, fiber, and powerful antioxidants that protect against inflammation and chronic disease. And best of all, they are delicious!</p>
-        <p>Ancient Grainiac is my way of sharing the goodness of these grains with you. I hope you can experience how nourishing and delicious stone-milled ancient grains can be, while supporting small farmers who are building a healthier, more resilient food system.</p>
-        <p class="sig">Isa</p>
->>>>>>> 934d493 (more dynamic)
+      <div class="baker-copy reveal">
+        <p class="label">The baker</p>
+        <h2>Hi, I'm Isa.</h2>
+        
+        <p>Ancient Grainiac is my way of sharing how nourishing and delicious stone-milled ancient grains can be, while supporting small farmers who are building a healthier, more resilient food system.</p>
+        <p>My first introduction to ancient grains was through regenerative agriculture and the role they play in building soil health and preserving biodiversity. Not only are these crops climate resilient, they also offer a wide variety of health and nutritional benefits, including high-quality proteins, fiber, and powerful antioxidants that protect against inflammation and chronic disease.</p>
+        <p>For a long time I went along with the consensus that whole wheat is healthier but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how much the grain itself shapes how bread tastes and how it makes you feel.</p>
+
+        <p class="sig">— Isa</p>
       </div>
     </div>
   </section>
 
-  <!-- FLOUR -->
+  <!-- ══ FLOUR ══ -->
   <section class="dark" id="flour">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="mono eyebrow">The flour</p>
-        <h2>Every bake starts with the whole kernel.</h2>
+      <div class="reveal">
+        <p class="label">The flour</p>
+        <h2 class="sec-title">Every bake starts with the whole kernel.</h2>
       </div>
       <div class="mill-grid reveal">
         <div class="mill-card stone">
-          <p class="mono">Stone Milling</p>
+          <p class="card-label">Stone Milling</p>
           <h3>Stone-milled, kernel intact</h3>
           <p>The whole kernel is ground together, so the nutrient-rich bran and germ stay in the flour. Fiber, minerals, healthy fats, and B vitamins included. Nothing stripped, nothing added back.</p>
         </div>
         <div class="mill-card roller">
-          <p class="mono">Industrial Roller Milling</p>
+          <p class="card-label">Industrial Roller Milling</p>
           <h3>Roller-milled, then "enriched"</h3>
           <p>Industrial roller mills separate the kernel into parts and discard most of the bran and germ. What's left is often bleached, then "enriched"<sup><a href="#fn1" id="ref1">1</a></sup> with a short list of synthetic nutrients to meet FDA minimums.<sup><a href="#fn2" id="ref2">2</a></sup></p>
         </div>
@@ -484,133 +850,141 @@
     </div>
   </section>
 
-  <!-- WHY -->
+  <!-- ══ WHY ══ -->
   <section id="why">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="mono eyebrow">The why</p>
-        <h2>Older grains, stronger food system, better bread.</h2>
+      <div class="reveal">
+        <p class="label">The why</p>
+        <h2 class="sec-title">Older grains, stronger food system, better bread.</h2>
       </div>
       <div class="why-grid reveal">
         <div class="why-card">
-          <p class="mono" style="color:var(--gold)">Biodiversity</p>
+          <p class="why-label">Biodiversity</p>
           <h3>Every loaf keeps a variety in circulation</h3>
-          <p>Global agriculture has narrowed around a handful of modern crops, reducing genetic diversity and making the food system more fragile as the climate shifts.<sup><a href="#fn3">3</a></sup> Ancient grains tend to need less water and fewer inputs, and they hold up better in drought, heat, and poor soil.<sup><a href="#fn3">3</a></sup></p>
+          <p>Global agriculture has narrowed around a handful of modern crops, reducing genetic diversity and making the food system more fragile as the climate shifts.<sup><a href="#fn3">3</a></sup> Ancient grains tend to need less water and fewer inputs, and they hold up better in drought, heat, and poor soil.</p>
         </div>
         <div class="why-card">
-          <p class="mono" style="color:var(--gold)">Digestibility</p>
+          <p class="why-label">Digestibility</p>
           <h3>A gentler kind of gluten</h3>
-          <p>The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<sup><a href="#fn4">4</a></sup> Studies of einkorn have found lower levels of the peptides most often associated with wheat sensitivity.<sup><a href="#fn5">5</a></sup></p>
+          <p>The gluten in einkorn, spelt, and emmer has a different protein makeup, with higher ratios of gliadin to glutenin and a weaker, less elastic network.<sup><a href="#fn4">4</a></sup> Studies have found lower levels of the peptides most often associated with wheat sensitivity.<sup><a href="#fn5">5</a></sup></p>
         </div>
         <div class="why-card">
-          <p class="mono" style="color:var(--gold)">Fermentation</p>
+          <p class="why-label">Fermentation</p>
           <h3>Sourdough does the hard work first</h3>
           <p>Long sourdough fermentation lets wild yeast and bacteria pre-digest some of the gluten and break down phytic acid that can otherwise block mineral absorption. Slower bread, easier on you.</p>
         </div>
       </div>
-      <p class="why-aside reveal">For a long time I went along with the consensus that whole wheat is healthier but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how much the grain itself shapes how bread tastes and how it makes you feel.</p>
     </div>
   </section>
 
-  <!-- BAKES -->
-  <section class="section" id="bakes">
+  <!-- ══ BAKES ══ -->
+  <section id="bakes">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="mono eyebrow">The bakes</p>
-        <h2>Highlights from the current menu</h2>
+      <div class="reveal">
+        <p class="label">The bakes</p>
+        <h2 class="sec-title">Highlights from the current menu</h2>
       </div>
-      <div class="bakes reveal">
+      <div class="bakes-grid reveal">
         <article class="bake">
-          <div class="img"><img src="assets/rye-choc-chip-cookies.jpeg" alt="Rye brown butter chocolate chunk cookies, sea-salted, cooling on a wire rack" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/rye-choc-chip-cookies.jpeg" alt="Rye brown butter chocolate chunk cookies on a wire rack" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Rye Chocolate Chunk Cookies</h3>
-            <p>Brown butter and dark chocolate folded into a whole-grain rye dough, finished with flaky sea salt.</p>
-            <span class="grainline">100% Whole-Grain Rye</span>
-            <span class="allergens">Contains: Wheat, Milk, Eggs</span>
+            <p>Brown butter and dark chocolate folded into whole-grain rye dough, finished with flaky sea salt.</p>
+            <span class="bake-grain">100% Whole-Grain Rye</span>
+            <span class="bake-allergens">Contains: Wheat · Milk · Eggs</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/sourdough-english-muffins.jpeg" alt="Sourdough English muffins in a bakery box" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/sourdough-english-muffins.jpeg" alt="Sourdough English muffins in a bakery box" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Sourdough English Muffins</h3>
-            <p>Naturally leavened, griddled in cornmeal for a crisp crust.</p>
-            <span class="grainline">Bread Flour &amp; Freshly Milled Einkorn · Wild yeast</span>
-            <span class="allergens">Contains: Wheat, Milk, Eggs</span>
+            <p>Naturally leavened, griddled in cornmeal for a crisp crust and classic nooks and crannies.</p>
+            <span class="bake-grain">Bread Flour &amp; Freshly Milled Einkorn · Wild yeast</span>
+            <span class="bake-allergens">Contains: Wheat · Milk · Eggs</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/spelt-shortbread.png" alt="Spelt shortbread fingers" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/spelt-shortbread.png" alt="Spelt shortbread fingers" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Spelt Shortbread</h3>
             <p>Four ingredients: whole-grain spelt, grass-fed butter, sugar, and sea salt.</p>
-            <span class="grainline">100% Whole-Grain Spelt</span>
-            <span class="allergens">Contains: Wheat, Milk</span>
+            <span class="bake-grain">100% Whole-Grain Spelt</span>
+            <span class="bake-allergens">Contains: Wheat · Milk</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/ag-granola.png" alt="Ancient grain granola with nuts and coconut" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/ag-granola.png" alt="Ancient grain granola with nuts and coconut" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Ancient Grain Granola</h3>
             <p>Einkorn berries and hulled millet toasted with pecans, walnuts, almonds, and coconut, sweetened with maple syrup.</p>
-            <span class="grainline">Einkorn · Millet</span>
-            <span class="allergens">Contains: Wheat, Eggs, Tree Nuts (Pecan, Walnut, Almond, Coconut)</span>
+            <span class="bake-grain">Einkorn · Millet</span>
+            <span class="bake-allergens">Contains: Wheat · Eggs · Tree Nuts (Pecan, Walnut, Almond, Coconut)</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/einkorn-cinnamon-toast-crunch.png" alt="Einkorn cinnamon toast crunch squares" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/einkorn-cinnamon-toast-crunch.png" alt="Einkorn cinnamon toast crunch squares" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Einkorn Cinnamon Toast Crunch</h3>
-            <p>A satiating take on a childhood favorite. Whole-grain einkorn dough cut into squares, dusted with cinnamon sugar.</p>
-            <span class="grainline">100% Whole-Grain Einkorn</span>
-            <span class="allergens">Contains: Wheat, Milk</span>
+            <p>A satiating take on a childhood classic. Whole-grain einkorn dough cut into squares, dusted with cinnamon sugar.</p>
+            <span class="bake-grain">100% Whole-Grain Einkorn</span>
+            <span class="bake-allergens">Contains: Wheat · Milk</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/spelt-sourdough-loaf.jpeg" alt="Spelt sourdough loaf, scored with a wheat-stalk pattern" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/spelt-sourdough-loaf.jpeg" alt="Spelt sourdough loaf, scored with a wheat-stalk pattern" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Spelt Sourdough Loaf</h3>
-            <p>A rustic, long-fermented sandwich loaf with a nutty flavor and tender crumb.</p>
-            <span class="grainline">100% Whole-Grain Spelt · Wild yeast</span>
-            <span class="allergens">Contains: Wheat</span>
+            <p>A rustic, long-fermented sandwich loaf with a nutty flavor and tender, open crumb.</p>
+            <span class="bake-grain">100% Whole-Grain Spelt · Wild yeast</span>
+            <span class="bake-allergens">Contains: Wheat</span>
           </div>
         </article>
         <article class="bake">
-          <div class="img"><img src="assets/four-grain-bagels.jpeg" alt="A dozen sourdough bagels in Plain, Sesame, and Everything varieties" loading="lazy" /></div>
-          <div class="body">
+          <div class="bake-img"><img src="assets/four-grain-bagels.jpeg" alt="A dozen sourdough bagels in Plain, Sesame, and Everything varieties" loading="lazy" /></div>
+          <div class="bake-body">
             <h3>Five-Grain Sourdough Bagels</h3>
-            <p>Artisan sifted bread flour, Turkey Red wheat, spelt, and rye, stone-milled into a naturally leavened bagel dough. Plain, Salt, Sesame, or Everything.</p>
-            <span class="grainline">Wheat · Spelt · Rye</span>
-            <span class="allergens">Contains: Wheat (Sesame in Sesame &amp; Everything)</span>
+            <p>Sifted bread flour, Turkey Red wheat, spelt, and rye, stone-milled into a naturally leavened bagel dough. Plain, Salt, Sesame, or Everything.</p>
+            <span class="bake-grain">Wheat · Spelt · Rye</span>
+            <span class="bake-allergens">Contains: Wheat (+ Sesame in Sesame &amp; Everything)</span>
           </div>
         </article>
       </div>
-      <div class="bakes-cta reveal">
+      <div class="bakes-footer reveal">
+        <p>Orders open weekly. Reach out to see what's available this bake cycle.</p>
         <a class="btn btn-primary" href="#order">See how to order</a>
       </div>
     </div>
   </section>
 
-  <!-- GRAIN ARCHIVE -->
-  <section class="dark archive" id="grains">
+  <!-- ══ GRAIN ARCHIVE ══ -->
+  <section class="dark" id="grains">
     <div class="wrap">
-      <div class="sec-head reveal">
-        <p class="mono eyebrow">The grain archive</p>
-        <p style="margin-top:0;">"Ancient grains" are wheats and cereals that have stayed largely unchanged over the last several hundred years, never bred for industrial yield. Each one below is plotted by when humans first domesticated it. Pick a grain to read its card.</p>
+      <div class="reveal">
+        <p class="label">The grain archive</p>
+        <h2 class="sec-title">Five grains. Ten thousand years of farming.</h2>
       </div>
+      <p class="archive-intro reveal">Ancient grains are wheats and cereals that have stayed largely unchanged over the last several hundred years, not bred for industrial yield. </p>
 
       <div class="timeline reveal">
         <div class="tl-scale" role="tablist" aria-label="Grains by domestication date">
+          <!-- Scale: 9000 BCE (left:0%) → 2000 BCE (left:100%), span = 7000 years
+               Position formula: (9000 - date) / 7000 * 100%
+               Einkorn  8500 BCE → (9000-8500)/7000 = 7.1%
+               Spelt    5000 BCE → (9000-5000)/7000 = 57.1%
+               Millet   2500 BCE → (9000-2500)/7000 = 92.9%
+               Sorghum  3000 BCE → (9000-3000)/7000 = 85.7%
+               Rye      2000 BCE → (9000-2000)/7000 = 100%  -->
           <div class="tl-axis" aria-hidden="true"></div>
-          <div class="tl-tick" style="left:0%" aria-hidden="true"><span>9000 BCE</span></div>
-          <div class="tl-tick" style="left:30.77%" aria-hidden="true"><span>7000 BCE</span></div>
-          <div class="tl-tick" style="left:61.54%" aria-hidden="true"><span>5000 BCE</span></div>
-          <div class="tl-tick" style="left:92.3%" aria-hidden="true"><span>3000 BCE</span></div>
+          <div class="tl-tick" style="left:0%"    aria-hidden="true"><span>9000 BCE</span></div>
+          <div class="tl-tick" style="left:28.6%" aria-hidden="true"><span>7000 BCE</span></div>
+          <div class="tl-tick" style="left:57.1%" aria-hidden="true"><span>5000 BCE</span></div>
+          <div class="tl-tick" style="left:85.7%" aria-hidden="true"><span>3000 BCE</span></div>
 
-          <button class="tl-node" role="tab" id="tab-einkorn" data-grain="einkorn" style="left:7.7%"  aria-selected="true"  aria-controls="specimen-card"><span class="lbl">Einkorn</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-millet"  data-grain="millet"  style="left:15.4%"  aria-selected="false" aria-controls="specimen-card"><span class="lbl">Millet</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-rye"     data-grain="rye"     style="left:36.9%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Rye</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-spelt"   data-grain="spelt"   style="left:61.5%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Spelt</span><span class="dot"></span></button>
-          <button class="tl-node" role="tab" id="tab-sorghum" data-grain="sorghum" style="left:92.3%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Sorghum</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-einkorn" data-grain="einkorn" style="left:7.1%"  aria-selected="true"  aria-controls="specimen-card"><span class="lbl">Einkorn</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-spelt"   data-grain="spelt"   style="left:57.1%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Spelt</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-sorghum" data-grain="sorghum" style="left:85.7%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Sorghum</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-millet"  data-grain="millet"  style="left:92.9%" aria-selected="false" aria-controls="specimen-card"><span class="lbl">Millet</span><span class="dot"></span></button>
+          <button class="tl-node" role="tab" id="tab-rye"     data-grain="rye"     style="left:100%"  aria-selected="false" aria-controls="specimen-card"><span class="lbl">Rye</span><span class="dot"></span></button>
         </div>
 
         <div class="specimen" id="specimen-card" role="tabpanel" aria-live="polite">
@@ -630,11 +1004,11 @@
     </div>
   </section>
 
-  <!-- ORDER -->
+  <!-- ══ ORDER ══ -->
   <section class="order" id="order">
     <div class="wrap">
       <div class="reveal">
-        <p class="mono eyebrow">Get in touch</p>
+        <p class="label">Get in touch</p>
         <h2>Orders open weekly.</h2>
         <p class="lead">Message me to order, or ask about custom bakes. I love experimenting and putting an ancient grainiac twist on fan favorites!</p>
         <div class="cta-row">
@@ -644,20 +1018,23 @@
       </div>
       <div class="order-card reveal">
         <div class="row"><p class="k">Email</p><p class="v"><a href="mailto:ancient.grainiac@gmail.com">ancient.grainiac@gmail.com</a></p></div>
+        <hr />
         <div class="row"><p class="k">Instagram</p><p class="v"><a href="https://www.instagram.com/ancient_grainiac/" target="_blank" rel="noopener">@ancient_grainiac</a></p></div>
-        <div class="row"><p class="k">Where</p><p class="v">Chicago, IL (pickup &amp; local delivery)</p></div>
+        <hr />
+        <div class="row"><p class="k">Where</p><p class="v">Chicago, IL — pickup &amp; local delivery</p></div>
+        <hr />
         <div class="row"><p class="k">Markets</p><p class="v">To be announced</p></div>
       </div>
     </div>
   </section>
 
-  <!-- REFERENCES -->
+  <!-- ══ REFERENCES ══ -->
   <div class="refs">
     <div class="wrap">
-      <h2>References</h2>
+      <p class="refs-label">References</p>
       <ol>
         <li id="fn1"><a href="https://www.sciencedirect.com/topics/food-science/food-enrichment" target="_blank" rel="noopener">"Food Enrichment," ScienceDirect Topics</a></li>
-        <li id="fn2"><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-137/subpart-B/section-137.165" target="_blank" rel="noopener">FDA, 21 CFR § 137.165 Enriched Flour</a></li>
+        <li id="fn2"><a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-137/subpart-B/section-137.165" target="_blank" rel="noopener">FDA, 21 CFR § 137.165 — Enriched Flour</a></li>
         <li id="fn3"><a href="https://www.mdpi.com/2304-8158/12/11/2213" target="_blank" rel="noopener">Majzoobi et al., "The Role of Ancient Grains in Alleviating Hunger and Malnutrition," <em>Foods</em> (2023)</a></li>
         <li id="fn4">Shewry, P.R., "Wheat," <em>Journal of Experimental Botany</em> (2009) — gluten protein structure in ancient vs. modern wheats.</li>
         <li id="fn5"><a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2020.00056/full" target="_blank" rel="noopener">Vaquero et al., "Comparative Analysis of in vitro Digestibility and Immunogenicity of Gliadin Proteins from Durum and Einkorn Wheat," <em>Frontiers in Nutrition</em> (2020)</a></li>
@@ -666,228 +1043,113 @@
   </div>
 </main>
 
+<!-- ══ FOOTER ══ -->
 <footer>
   <div class="wrap">
-<<<<<<< HEAD
-    <div class="sec-head reveal"><span class="num">§ 04</span><h2>The bakes</h2></div>
-    <div class="bakes reveal">
-      <article class="bake">
-        <div class="img"><img src="assets/rye-choc-chip-cookies.jpeg" alt="Rye brown butter chocolate chunk cookies, sea-salted, cooling on a wire rack" /></div>
-        <div class="body">
-          <h3>Rye Chocolate Chunk Cookies</h3>
-          <p>Brown butter and dark chocolate folded into a whole-grain rye dough, finished with flaky sea salt.</p>
-          <span class="grainline">100% Whole-Grain Rye</span>
-          <span class="allergens">Contains: Wheat, Milk, Eggs</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/sourdough-english-muffins.jpeg" alt="Sourdough English muffins in a bakery box" /></div>
-        <div class="body">
-          <h3>Sourdough English Muffins</h3>
-          <p>Naturally leavened, griddled in cornmeal for a crisp crust.</p>
-          <span class="grainline">Bread Flour &amp; Freshly Milled Einkorn · Wild yeast</span>
-          <span class="allergens">Contains: Wheat, Milk, Eggs</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/spelt-shortbread.png" alt="Spelt Shortbread" /></div>
-        <div class="body">
-          <h3>Spelt Shortbread</h3>
-          <p>Four ingredients: whole-grain spelt, grass-fed butter, sugar, and sea salt.</p>
-          <span class="grainline">100% Whole-Grain Spelt</span>
-          <span class="allergens">Contains: Wheat, Milk</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/ag-granola.png" alt="Ancient grain granola" /></div>
-        <div class="body">
-          <h3>Ancient Grain Granola</h3>
-          <p>Einkorn berries and hulled millet toasted with pecans, walnuts, almonds, and coconut, sweetened with maple syrup.</p>
-          <span class="grainline">Einkorn · Millet</span>
-          <span class="allergens">Contains: Wheat, Eggs, Tree Nuts (Pecan, Walnut, Almond, Coconut)</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/einkorn-cinnamon-toast-crunch.png" alt="Einkorn cinnamon toast crunch squares" /></div>
-        <div class="body">
-          <h3>Einkorn Cinnamon Toast Crunch</h3>
-          <p>A satiating take on a childhood favorite. Whole-grain einkorn dough cut into squares, dusted with cinnamon sugar.</p>
-          <span class="grainline">100% Whole-Grain Einkorn</span>
-          <span class="allergens">Contains: Wheat, Milk</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/spelt-sourdough-loaf.jpeg" alt="Spelt sourdough loaf, scored with a wheat-stalk pattern" /></div>
-        <div class="body">
-          <h3>Spelt Sourdough Loaf</h3>
-          <p>A rustic, long-fermented sandwich loaf with a nutty flavor and tender crumb.</p>
-          <span class="grainline">100% Whole-Grain Spelt · Wild yeast</span>
-          <span class="allergens">Contains: Wheat</span>
-        </div>
-      </article>
-      <article class="bake">
-        <div class="img"><img src="assets/four-grain-bagels.jpeg" alt="A dozen sourdough bagels in Plain, Sesame, and Everything varieties" /></div>
-        <div class="body">
-          <h3>Five-Grain Sourdough Bagels</h3>
-          <p>Artisan sifted bread flour, Turkey Red wheat, spelt, and rye, stone-milled into a naturally leavened bagel dough. Plain, Salt, Sesame, or Everything.</p>
-          <span class="grainline">Wheat · Spelt · Rye</span>
-          <span class="allergens">Contains: Wheat (Sesame in Sesame &amp; Everything)</span>
-        </div>
-      </article>
+    <div class="ft-col">
+      <p class="ft-label">The bakery</p>
+      <h3>Ancient Grainiac</h3>
+      <p>Microbakery baking with the oldest grains we know.</p>
+    </div>
+    <div class="ft-col">
+      <p class="ft-label">Order &amp; reach</p>
+      <ul>
+        <li><a href="mailto:ancient.grainiac@gmail.com">ancient.grainiac@gmail.com</a></li>
+        <li><a href="https://www.instagram.com/ancient_grainiac/" target="_blank" rel="noopener">@ancient_grainiac</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <p class="ft-label">Where</p>
+      <ul>
+        <li>Chicago, IL</li>
+        <li>Pickup &amp; local delivery</li>
+        <li>Markets: TBA</li>
+      </ul>
     </div>
   </div>
-</section>
-
-<!-- ══ GRAIN ARCHIVE ══ -->
-<section class="section" id="grains">
-  <div class="wrap">
-    <div class="sec-head reveal"><span class="num">§ 05</span><h2>The grain archive</h2></div>
-
-    <div class="archive-intro reveal">
-      <p>"Ancient grains" are wheats and cereals that have stayed largely unchanged over the last several hundred years, not bred for industrial yield.</p>
+  <div class="footer-base">
+    <div class="wrap">
+      <span class="mono-sm">© <span id="yr"></span> Ancient Grainiac · Baked in small batches</span>
+      <span class="mono-sm">Field notes &amp; grain-data — coming soon</span>
     </div>
-
-    <div class="specimens reveal">
-      <article class="specimen s-einkorn">
-        <span class="seed" aria-hidden="true"></span>
-        <h3>Einkorn</h3>
-        <span class="latin">Triticum monococcum</span>
-        <p>The only wheat that has never been hybridized, einkorn has just 14 chromosomes compared to modern bread wheat's 42. That simpler genetic structure produces a weaker gluten network that many people find easier to digest, along with notably higher levels of lutein, beta-carotene, and protein than any modern wheat variety. It has a buttery and malty flavor.</p>
-        <span class="meta">Domesticated c. 8500 BCE · Fertile Crescent</span>
-      </article>
-      <article class="specimen s-spelt">
-        <span class="seed" aria-hidden="true"></span>
-        <h3>Spelt</h3>
-        <span class="latin">Triticum spelta</span>
-        <p>Spelt is genetically closer to modern bread wheat than other ancient grains, making it the most approachable to bake with. Its gluten is more water-soluble than modern wheat's, which is thought to make it easier to digest and its minerals more bioavailable. It was a staple of central Europe for centuries and remains widely used in German baking today.</p>
-        <span class="meta">Domesticated c. 5000 BCE · Near East and Caucasus</span>
-      </article>
-      <article class="specimen s-rye">
-        <span class="seed" aria-hidden="true"></span>
-        <h3>Rye</h3>
-        <span class="latin">Secale cereale</span>
-        <p>Rye contains less gluten than wheat but far more pentosans, water-absorbing carbohydrates that give rye doughs their characteristic stickiness and help finished loaves stay moist longer. It is high in fiber, has a lower glycemic index than most grains, and ferments faster than any other flour in a sourdough culture. The flavor is earthy and complex.</p>
-        <span class="meta">Cultivated c. 6600 BCE · South-central Turkey</span>
-      </article>
-      <article class="specimen s-sorghum">
-        <span class="seed" aria-hidden="true"></span>
-        <h3>Sorghum</h3>
-        <span class="latin">Sorghum bicolor</span>
-        <p>Sorghum is one of the five most important cereal crops in the world and the most important grain in sub-Saharan Africa, yet it is almost unknown in American kitchens. It is naturally gluten-free and is rich in B vitamins, iron, magnesium, and fiber. Sorghum is highly versatile and can be cooked like rice, ground into flour, popped, or made into syrup.</p>
-        <span class="meta">Domesticated c. 3000 BCE · Eastern Sudan</span>
-      </article>
-      <article class="specimen s-millet">
-        <span class="seed" aria-hidden="true"></span>
-        <h3>Millet</h3>
-        <span class="latin">Pennisetum glaucum</span>
-        <p>Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. It is gluten-free and notably high in iron, magnesium, phosphorus, and zinc, with a lower glycemic index than most cereals.</p>
-        <span class="meta">Domesticated c. 2500 BCE · Sahel, West Africa</span>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer id="contact">
-  <div class="wrap">
-    <div class="ftop">
-      <div>
-        <span class="tag">Get in touch</span>
-        <h3>Ancient Grain<span class="pt">iac</span></h3>
-        <p>Orders open weekly. Message me to order or ask about custom bakes for your table.</p>
-      </div>
-      <div>
-        <span class="tag">Order &amp; reach</span>
-        <ul>
-          <li><a href="mailto:ancient.grainiac@gmail.com">ancient.grainiac@gmail.com</a></li>
-          <li><a href="https://www.instagram.com/ancient_grainiac/" target="_blank" rel="noopener">@ancient-grainiac</a></li>
-        </ul>
-      </div>
-      <div>
-        <span class="tag">Where</span>
-        <ul>
-          <li>Chicago, IL</li>
-          <li>Pickup &amp; local delivery</li>
-          <li>Markets: [[ tba ]]</li>
-        </ul>
-      </div>
-    </div>
-    <div class="fnote">
-      <span>© <span id="yr"></span> Ancient Grainiac · Baked in small batches</span>
-      <span class="soon">// field notes &amp; grain-data projects — coming soon</span>
-    </div>
-=======
-    <a class="brand" href="#top" style="color:var(--butter);">Ancient Grainiac</a>
-    <p class="mono" style="margin:0;">© Ancient Grainiac · Baked in small batches</p>
-    <p class="mono" style="margin:0;">Field notes &amp; grain-data projects coming soon</p>
->>>>>>> 934d493 (more dynamic)
   </div>
 </footer>
 
 <script>
-  // Grain archive specimen data
+  // ── Year ──
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // ── Grain data ──
   const GRAINS = {
-    einkorn:{
-      name:"Einkorn", latin:"Triticum monococcum", date:"c. 8500 BCE", origin:"Fertile Crescent",
-      flavor:"Buttery & malty", gluten:"Weaker network", gf:false,
-      body:"The only wheat that has never been hybridized, einkorn has just 14 chromosomes compared to modern bread wheat's 42. That simpler genetic structure produces a weaker gluten network that many people find easier to digest, along with notably higher levels of lutein, beta-carotene, and protein than any modern wheat variety."
+    einkorn: {
+      name: 'Einkorn', latin: 'Triticum monococcum',
+      date: 'c. 8500 BCE', origin: 'Fertile Crescent',
+      flavor: 'Buttery & malty', gluten: 'Weaker network', gf: false,
+      body: 'The only wheat that has never been hybridized, einkorn has just 14 chromosomes compared to modern bread wheat\'s 42. That simpler genetic structure produces a weaker gluten network that many people find easier to digest, along with notably higher levels of lutein, beta-carotene, and protein than any modern wheat variety.'
     },
-    rye:{
-      name:"Rye", latin:"Secale cereale", date:"c. 6600 BCE", origin:"South-central Turkey",
-      flavor:"Earthy & complex", gluten:"Low, pentosan-rich", gf:false,
-      body:"Rye contains less gluten than wheat but far more pentosans, water-absorbing carbohydrates that give rye doughs their characteristic stickiness and help finished loaves stay moist longer. It is high in fiber and has a lower glycemic index than most grains."
+    rye: {
+      name: 'Rye', latin: 'Secale cereale',
+      date: 'c. 2000 BCE', origin: 'Central Anatolia',
+      flavor: 'Earthy & complex', gluten: 'Low, pentosan-rich', gf: false,
+      body: 'Wild rye spent thousands of years growing as a weed in wheat and barley fields, and over generations evolved to look almost identical to wheat so farmers couldn\'t easily pick it out and pull it. When harvest time came, rye seeds were gathered alongside the wheat, stored in the same bins, and replanted the following season. Farmers accidentally domesticated it and by around 2000 BCE, rye was a crop in its own right. It contains less gluten than wheat but far more pentosans, water-absorbing carbohydrates, that give rye doughs their characteristic stickiness and help finished loaves stay moist longer.'
     },
-    spelt:{
-      name:"Spelt", latin:"Triticum spelta", date:"c. 5000 BCE", origin:"Near East & Caucasus",
-      flavor:"Nutty & sweet", gluten:"Water-soluble", gf:false,
-      body:"Spelt is genetically closer to modern bread wheat than other ancient grains, making it the most approachable to bake with. Its gluten is more water-soluble than modern wheat's, which is thought to make it easier to digest and its minerals more bioavailable. A staple of central Europe for centuries, it remains widely used in German baking today."
+    spelt: {
+      name: 'Spelt', latin: 'Triticum spelta',
+      date: 'c. 5000 BCE', origin: 'Near East & Caucasus',
+      flavor: 'Nutty & sweet', gluten: 'Water-soluble', gf: false,
+      body: 'Spelt is genetically closer to modern bread wheat than other ancient grains, making it the most approachable to bake with. Its gluten is more water-soluble than modern wheat\'s, which is thought to make it easier to digest and its minerals more bioavailable. A staple of central Europe for centuries, it remains widely used in German baking today.'
     },
-    sorghum:{
-      name:"Sorghum", latin:"Sorghum bicolor", date:"c. 3000 BCE", origin:"Eastern Sudan",
-      flavor:"Mild & sweet", gluten:"Gluten-free", gf:true,
-      body:"Sorghum is one of the five most important cereal crops in the world and the most important grain in sub-Saharan Africa, yet it is almost unknown in American kitchens. Naturally gluten-free and rich in B vitamins, iron, magnesium, and fiber, it can be cooked like rice, ground into flour, popped, or made into syrup."
+    sorghum: {
+      name: 'Sorghum', latin: 'Sorghum bicolor',
+      date: 'c. 3000 BCE', origin: 'Eastern Sudan',
+      flavor: 'Mild & sweet', gluten: 'Gluten-free', gf: true,
+      body: 'Sorghum is one of the five most important cereal crops in the world and the most important grain in sub-Saharan Africa, yet it is almost unknown in American kitchens. Naturally gluten-free and rich in B vitamins, iron, magnesium, and fiber, it can be cooked like rice, ground into flour, popped, or made into syrup.'
     },
-    millet:{
-      name:"Millet", latin:"Pennisetum glaucum", date:"c. 2500 BCE", origin:"Sahel, West Africa",
-      flavor:"Corn-like & delicate", gluten:"Gluten-free", gf:true,
-      body:"Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. Millet is notably high in iron, magnesium, phosphorus, and zinc."
+    millet: {
+      name: 'Millet', latin: 'Pennisetum glaucum',
+      date: 'c. 2500 BCE', origin: 'Sahel, West Africa',
+      flavor: 'Corn-like & delicate', gluten: 'Gluten-free', gf: true,
+      body: 'Pearl millet is the most widely grown millet in the world and a dietary staple across the Sahel, India, and parts of South Asia. It needs as little as a third of the water that wheat requires and produces reliable yields on soils too poor and sandy for any other grain. Notably high in iron, magnesium, phosphorus, and zinc.'
     }
   };
 
-  const nodes = document.querySelectorAll(".tl-node");
-  const card  = document.getElementById("specimen-card");
-  const el = id => document.getElementById(id);
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const nodes = document.querySelectorAll('.tl-node');
+  const card  = document.getElementById('specimen-card');
+  const el    = id => document.getElementById(id);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function selectGrain(key){
+  function selectGrain(key) {
     const g = GRAINS[key];
-    if(!g) return;
-    nodes.forEach(n => n.setAttribute("aria-selected", String(n.dataset.grain === key)));
-    el("spec-name").textContent   = g.name;
-    el("spec-latin").textContent  = g.latin;
-    el("spec-body").textContent   = g.body;
-    el("spec-date").textContent   = g.date;
-    el("spec-origin").textContent = g.origin;
-    el("spec-flavor").textContent = g.flavor;
-    el("spec-gluten").textContent = g.gluten;
-    el("spec-gluten").classList.toggle("gf", g.gf);
-    if(!reduceMotion){
-      card.classList.remove("fade");
+    if (!g) return;
+    nodes.forEach(n => n.setAttribute('aria-selected', String(n.dataset.grain === key)));
+    el('spec-name').textContent   = g.name;
+    el('spec-latin').textContent  = g.latin;
+    el('spec-body').textContent   = g.body;
+    el('spec-date').textContent   = g.date;
+    el('spec-origin').textContent = g.origin;
+    el('spec-flavor').textContent = g.flavor;
+    el('spec-gluten').textContent = g.gluten;
+    el('spec-gluten').classList.toggle('gf', g.gf);
+    if (!reduceMotion) {
+      card.classList.remove('fade');
       void card.offsetWidth;
-      card.classList.add("fade");
+      card.classList.add('fade');
     }
   }
-  nodes.forEach(n => n.addEventListener("click", () => selectGrain(n.dataset.grain)));
 
-  document.querySelectorAll(".grain-strip a").forEach(a => {
-    a.addEventListener("click", () => selectGrain(a.dataset.grain));
+  nodes.forEach(n => n.addEventListener('click', () => selectGrain(n.dataset.grain)));
+
+  document.querySelectorAll('.grain-strip a').forEach(a => {
+    a.addEventListener('click', () => selectGrain(a.dataset.grain));
   });
 
-  // Scroll reveal
+  // ── Scroll reveal ──
   const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, {threshold:.12});
-  document.querySelectorAll(".reveal").forEach(elm => io.observe(elm));
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(elm => io.observe(elm));
 </script>
 </body>
 </html>
