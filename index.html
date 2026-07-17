@@ -43,7 +43,7 @@
     background: var(--flour);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
@@ -80,7 +80,7 @@
   /* ─── TYPE UTILITIES ─── */
   .label {
     font-family: var(--mono);
-    font-size: .68rem;
+    font-size: .78rem;
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--gold);
@@ -107,7 +107,7 @@
 
   .mono-sm {
     font-family: var(--mono);
-    font-size: .64rem;
+    font-size: .74rem;
     letter-spacing: .15em;
     text-transform: uppercase;
   }
@@ -115,7 +115,7 @@
   sup a {
     color: var(--gold);
     text-decoration: none;
-    font-size: .72em;
+    font-size: .78em;
     font-weight: 500;
   }
   sup a:hover { text-decoration: underline; }
@@ -124,11 +124,11 @@
   /* ─── BUTTONS ─── */
   .btn {
     font-family: var(--mono);
-    font-size: .72rem;
+    font-size: .82rem;
     letter-spacing: .13em;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 14px 26px;
+    padding: 16px 30px;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
@@ -177,35 +177,40 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-block: 13px;
+    padding-block: 22px;
     gap: 20px;
   }
   .brand {
     font-family: var(--serif);
-    font-size: 1.15rem;
+    font-size: 1.45rem;
     font-weight: 400;
     text-decoration: none;
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     color: var(--ink);
+  }
+  .brand svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
   }
   .nav-links {
     display: flex;
-    gap: 24px;
+    gap: 28px;
     overflow-x: auto;
     scrollbar-width: none;
   }
   .nav-links::-webkit-scrollbar { display: none; }
   .nav-links a {
     font-family: var(--mono);
-    font-size: .68rem;
+    font-size: .78rem;
     letter-spacing: .14em;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--ink-soft);
-    padding-bottom: 2px;
+    padding-bottom: 3px;
     border-bottom: 1px solid transparent;
     transition: color .2s, border-color .2s;
     white-space: nowrap;
@@ -213,7 +218,10 @@
   }
   .nav-links a:hover,
   .nav-links a:focus-visible { color: var(--ink); border-color: var(--gold); }
-  .nav-links .nav-order { color: var(--gold); }
+  .nav-links .nav-order {
+    color: var(--gold);
+    font-weight: 500;
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -231,46 +239,6 @@
     .lead {
       white-space: nowrap;
     }
-  }
-
-  /* ─── GRAIN STRIP ─── */
-  .grain-strip {
-    border-bottom: 1px solid var(--line);
-    background: var(--bran);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .grain-strip::-webkit-scrollbar { display: none; }
-  .grain-strip .wrap {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    min-width: 480px;
-    padding-inline: 0;
-  }
-  .grain-strip a {
-    text-decoration: none;
-    padding: 17px 10px;
-    text-align: center;
-    border-left: 1px solid var(--line);
-    transition: background .2s;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    color: var(--ink);
-  }
-  .grain-strip a:first-child { border-left: none; }
-  .grain-strip a:hover { background: var(--flour); }
-  .grain-strip .g-name {
-    font-family: var(--serif);
-    font-size: .98rem;
-    font-weight: 400;
-  }
-  .grain-strip .g-date {
-    font-family: var(--mono);
-    font-size: .6rem;
-    letter-spacing: .12em;
-    color: var(--ink-soft);
-    text-transform: uppercase;
   }
 
   /* ─── BAKER ─── */
@@ -297,7 +265,7 @@
     font-family: var(--serif);
     font-style: italic;
     color: var(--gold);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-top: 12px !important;
   }
 
@@ -319,7 +287,7 @@
   }
   .mill-card .card-label {
     font-family: var(--mono);
-    font-size: .63rem;
+    font-size: .74rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--gold-bright);
@@ -328,10 +296,10 @@
   .mill-card.roller .card-label {
     color: color-mix(in srgb, var(--butter) 45%, transparent);
   }
-  .mill-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+  .mill-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
   .mill-card p {
     color: color-mix(in srgb, var(--butter) 76%, transparent);
-    font-size: .96rem;
+    font-size: 1rem;
   }
   .flour-note {
     margin-top: clamp(28px, 4vw, 44px);
@@ -352,20 +320,20 @@
   .why-card { border-top: 2px solid var(--gold); padding-top: 22px; }
   .why-card .why-label {
     font-family: var(--mono);
-    font-size: .63rem;
+    font-size: .74rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 10px;
   }
-  .why-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
-  .why-card p { color: var(--ink-soft); font-size: .96rem; }
+  .why-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .why-card p { color: var(--ink-soft); font-size: 1rem; }
   .why-aside {
     margin-top: clamp(36px, 5vw, 52px);
     border-left: 3px solid var(--gold);
     padding: 4px 0 4px clamp(18px, 3vw, 28px);
     max-width: 62ch;
-    font-size: 1.04rem;
+    font-size: 1.1rem;
     font-style: italic;
     color: var(--ink-soft);
   }
@@ -404,15 +372,15 @@
     flex: 1;
     gap: 6px;
   }
-  .bake-body h3 { font-size: 1.1rem; }
+  .bake-body h3 { font-size: 1.15rem; }
   .bake-body p {
     color: var(--ink-soft);
-    font-size: .93rem;
+    font-size: 1rem;
     flex: 1;
   }
   .bake-grain {
     font-family: var(--mono);
-    font-size: .6rem;
+    font-size: .7rem;
     letter-spacing: .13em;
     text-transform: uppercase;
     color: var(--gold);
@@ -420,7 +388,7 @@
   }
   .bake-allergens {
     font-family: var(--mono);
-    font-size: .57rem;
+    font-size: .67rem;
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-soft);
@@ -437,6 +405,7 @@
     margin-bottom: 18px;
     max-width: 50ch;
     margin-inline: auto;
+    font-size: 1rem;
   }
 
   /* ─── GRAIN ARCHIVE ─── */
@@ -444,7 +413,7 @@
     max-width: 68ch;
     color: color-mix(in srgb, var(--butter) 72%, transparent);
     margin-top: 6px;
-    font-size: .97rem;
+    font-size: 1rem;
   }
 
   .timeline { margin-top: clamp(40px, 6vw, 60px); }
@@ -473,7 +442,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--mono);
-    font-size: .58rem;
+    font-size: .68rem;
     letter-spacing: .1em;
     color: color-mix(in srgb, var(--butter) 42%, transparent);
     white-space: nowrap;
@@ -504,7 +473,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-family: var(--serif);
-    font-size: .88rem;
+    font-size: .95rem;
     color: var(--butter);
     white-space: nowrap;
     transition: color .2s;
@@ -536,14 +505,17 @@
   .spec-latin {
     font-style: italic;
     color: var(--gold-bright);
-    font-size: .95rem;
+    font-size: 1rem;
     margin-bottom: 4px;
   }
   .specimen h3 {
     font-size: clamp(1.6rem, 2.8vw, 2.2rem);
     margin-bottom: 14px;
   }
-  .spec-body { color: color-mix(in srgb, var(--butter) 78%, transparent); }
+  .spec-body {
+    color: color-mix(in srgb, var(--butter) 78%, transparent);
+    font-size: 1rem;
+  }
   .spec-data {
     border-left: 1px solid var(--line-dark);
     padding-left: clamp(20px, 3vw, 36px);
@@ -554,7 +526,7 @@
   }
   .spec-row .k {
     font-family: var(--mono);
-    font-size: .6rem;
+    font-size: .7rem;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: color-mix(in srgb, var(--butter) 48%, transparent);
@@ -562,7 +534,7 @@
   }
   .spec-row .v {
     font-family: var(--serif);
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: var(--butter);
     margin: 0;
   }
@@ -593,12 +565,12 @@
   .order-card .row { display: flex; flex-direction: column; gap: 3px; }
   .order-card .row .k {
     font-family: var(--mono);
-    font-size: .6rem;
+    font-size: .7rem;
     letter-spacing: .15em;
     text-transform: uppercase;
     color: var(--ink-soft);
   }
-  .order-card .row .v { font-size: 1rem; margin: 0; }
+  .order-card .row .v { font-size: 1.05rem; margin: 0; }
   .order-card a {
     text-decoration: none;
     border-bottom: 1px solid var(--gold);
@@ -618,7 +590,7 @@
   }
   .refs .refs-label {
     font-family: var(--mono);
-    font-size: .64rem;
+    font-size: .74rem;
     font-weight: 500;
     letter-spacing: .16em;
     text-transform: uppercase;
@@ -629,7 +601,7 @@
     margin: 0;
     padding-left: 22px;
     color: var(--ink-soft);
-    font-size: .87rem;
+    font-size: .95rem;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -656,14 +628,14 @@
   }
   footer .ft-col .ft-label {
     font-family: var(--mono);
-    font-size: .6rem;
+    font-size: .7rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: color-mix(in srgb, var(--butter) 45%, transparent);
     margin-bottom: 12px;
   }
   footer .ft-col h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 300;
     margin-bottom: 10px;
     color: var(--butter);
@@ -671,7 +643,7 @@
   footer .ft-col p,
   footer .ft-col ul {
     color: color-mix(in srgb, var(--butter) 68%, transparent);
-    font-size: .93rem;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -766,7 +738,7 @@
 <header class="site-nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Ancient Grainiac home">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 22V7" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round"/>
         <path d="M12 8c-3 0-4.5-1.8-4.5-4.5C10.2 3.5 12 5 12 8Zm0 0c3 0 4.5-1.8 4.5-4.5C13.8 3.5 12 5 12 8Zm0 5c-3 0-4.5-1.8-4.5-4.5C10.2 8.5 12 10 12 13Zm0 0c3 0 4.5-1.8 4.5-4.5C13.8 8.5 12 10 12 13Zm0 5c-3 0-4.5-1.8-4.5-4.5c2.7 0 4.5 1.5 4.5 4.5Zm0 0c3 0 4.5-1.8 4.5-4.5c-2.7 0-4.5 1.5-4.5 4.5Z" fill="var(--gold)"/>
       </svg>
@@ -796,17 +768,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ══ GRAIN STRIP ══ -->
-  <div class="grain-strip" aria-label="The five grains">
-    <div class="wrap">
-      <a href="#grains" data-grain="einkorn"><span class="g-name">Einkorn</span><span class="g-date">c. 8500 BCE</span></a>
-      <a href="#grains" data-grain="millet"><span class="g-name">Millet</span><span class="g-date">c. 2500 BCE</span></a>
-      <a href="#grains" data-grain="rye"><span class="g-name">Rye</span><span class="g-date">c. 2000 BCE</span></a>
-      <a href="#grains" data-grain="spelt"><span class="g-name">Spelt</span><span class="g-date">c. 5000 BCE</span></a>
-      <a href="#grains" data-grain="sorghum"><span class="g-name">Sorghum</span><span class="g-date">c. 3000 BCE</span></a>
-    </div>
-  </div>
 
   <!-- ══ BAKER ══ -->
   <section class="baker" id="about">
@@ -967,13 +928,6 @@
 
       <div class="timeline reveal">
         <div class="tl-scale" role="tablist" aria-label="Grains by domestication date">
-          <!-- Scale: 9000 BCE (left:0%) → 2000 BCE (left:100%), span = 7000 years
-               Position formula: (9000 - date) / 7000 * 100%
-               Einkorn  8500 BCE → (9000-8500)/7000 = 7.1%
-               Spelt    5000 BCE → (9000-5000)/7000 = 57.1%
-               Millet   2500 BCE → (9000-2500)/7000 = 92.9%
-               Sorghum  3000 BCE → (9000-3000)/7000 = 85.7%
-               Rye      2000 BCE → (9000-2000)/7000 = 100%  -->
           <div class="tl-axis" aria-hidden="true"></div>
           <div class="tl-tick" style="left:0%"    aria-hidden="true"><span>9000 BCE</span></div>
           <div class="tl-tick" style="left:28.6%" aria-hidden="true"><span>7000 BCE</span></div>
@@ -1138,10 +1092,6 @@
   }
 
   nodes.forEach(n => n.addEventListener('click', () => selectGrain(n.dataset.grain)));
-
-  document.querySelectorAll('.grain-strip a').forEach(a => {
-    a.addEventListener('click', () => selectGrain(a.dataset.grain));
-  });
 
   // ── Scroll reveal ──
   const io = new IntersectionObserver(entries => {
