@@ -235,11 +235,6 @@
     letter-spacing: -.02em;
   }
   .hero h1 .accent { color: var(--gold); }
-  @media (min-width: 768px) {
-    .lead {
-      white-space: nowrap;
-    }
-  }
 
   /* ─── BAKER ─── */
   .baker .wrap {
@@ -557,16 +552,26 @@
   /* ─── ORDER ─── */
   .order .wrap {
     display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
     gap: clamp(32px, 5vw, 72px);
     align-items: center;
+  }
+  .order .wrap > div {
+    min-width: 0;
   }
   .order h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin: 10px 0 18px;
     letter-spacing: -.015em;
   }
-  .order .lead { color: var(--ink-soft); max-width: 44ch; }
+  .order .lead { 
+    color: var(--ink-soft); 
+    overflow-wrap: break-word;
+  }
+  .order .wrap > .reveal:first-child {
+    min-width: 0;
+    overflow: hidden;
+  }
   .order-card {
     border: 1px solid var(--line);
     border-radius: 16px;
@@ -774,7 +779,7 @@
   <section class="hero" aria-label="Introduction">
     <div class="wrap">
       <p class="label">Microbakery · Chicago, IL</p>
-      <h1>Bread, as it was <span class="accent">meant to be.</span></h1>
+      <h1>Bread, as it was<br /><span class="accent">meant to be.</span></h1>
       <p class="lead">Built around ancient grains, stone-milled flour, and a deep love of good bread.</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#order">Order this week's bake</a>
@@ -794,7 +799,7 @@
         <h2>Hi, I'm Isa.</h2>
         
         <p>Ancient Grainiac is my way of sharing how nourishing and delicious stone-milled ancient grains can be, while supporting small farmers who are building a healthier, more resilient food system.</p>
-        <p>My first introduction to ancient grains was through regenerative agriculture and the role they play in building soil health and preserving biodiversity. These climate resilient crops also offer a wide variety of health and nutritional benefits, including high-quality proteins, fiber, and powerful antioxidants that protect against inflammation and chronic disease.</p>
+        <p>My first introduction to ancient grains was through regenerative agriculture and the role they play in building soil health and preserving biodiversity. These climate-resilient crops also offer a wide variety of health and nutritional benefits, including high-quality proteins, fiber, and powerful antioxidants that protect against inflammation and chronic disease.</p>
         <p>For a long time I went along with the consensus that bread is something to be enjoyed in moderation and whole wheat is healthier but tastes slightly worse. It wasn't until I started milling and baking with a variety of grains myself that I understood how nutririous bread can be when prepared the right way and how much the grain itself impacts taste and how it makes you feel.</p>
 
         <p class="sig">— Isa</p>
@@ -807,7 +812,7 @@
     <div class="wrap">
       <div class="reveal">
         <p class="label">The flour</p>
-        <h2 class="sec-title">Everything starts with the whole kernel.</h2>
+        <h2 class="sec-title">Everything starts with the kernel.</h2>
       </div>
       <div class="mill-grid reveal">
         <div class="mill-card stone">
